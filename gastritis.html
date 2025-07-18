@@ -1,0 +1,162 @@
+<!-- A partir de este ejemplo, puedo crear una estructura igual para cada enfermedad. Comienzo con Gastritis. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gastritis - Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7f9;
+      margin: 0;
+      padding-top: 90px;
+      color: #004d4d;
+    }
+    .barra-superior {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background-color: #40c9c6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .barra-superior img {
+      height: 50px;
+    }
+    .barra-superior h1 {
+      margin: 0;
+      margin-left: 10px;
+      font-size: 24px;
+      color: white;
+    }
+    .volver-btn {
+      background-color: white;
+      color: #004d4d;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .volver-btn:hover {
+      background-color: #004d4d;
+      color: white;
+    }
+    .contenedor {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      gap: 30px;
+    }
+    .texto {
+      flex: 2;
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .galeria {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #008080;
+      border-bottom: 2px solid #40c9c6;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+    ul {
+      line-height: 1.6;
+      margin-left: 20px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .advertencia {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #ffe0e0;
+      color: #8b0000;
+      border-left: 6px solid #ff5e5e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-superior">
+    <div style="display: flex; align-items: center;">
+      <img src="img/cuidate+ logo.png" alt="Logo" />
+      <h1>CUIDAT +</h1>
+    </div>
+    <button class="volver-btn" onclick="window.location.href='../index.html'">Volver a la página principal</button>
+  </div>
+
+  <div class="contenedor">
+    <div class="texto">
+      <h2>¿Qué es la gastritis?</h2>
+      <p>La gastritis es cuando el revestimiento del estómago se inflama o irrita. Puede causar dolor, ardor, náuseas o malestar después de comer. Es muy común y suele estar relacionada con el estrés, ciertos alimentos, medicamentos o infecciones.</p>
+
+      <h2>¿Por qué sucede?</h2>
+      <ul>
+        <li><strong>Infección por Helicobacter pylori:</strong> una bacteria que daña el estómago.</li>
+        <li><strong>Uso excesivo de medicamentos:</strong> como aspirinas o antiinflamatorios.</li>
+        <li><strong>Alcohol o tabaco:</strong> irritan el estómago.</li>
+        <li><strong>Estrés y ansiedad:</strong> pueden agravar la gastritis.</li>
+      </ul>
+
+      <h2>¿Qué puede pasar si no se trata?</h2>
+      <p>La gastritis puede causar úlceras o incluso sangrado interno si no se cuida. También puede derivar en problemas más graves como la gastritis crónica o anemia por pérdida de sangre.</p>
+
+      <h2>¿Cómo se trata?</h2>
+      <ul>
+        <li><strong>Medicamentos:</strong> como antiácidos, inhibidores de ácido o antibióticos (si hay infección).</li>
+        <li><strong>Dieta:</strong> evitar alimentos irritantes como picante, grasas o cítricos.</li>
+        <li><strong>Control del estrés:</strong> ayuda mucho a mejorar los síntomas.</li>
+      </ul>
+
+      <h2>Medicamentos que usualmente se recetan </h2>
+      <ul>
+        <li><strong>Omeprazol:</strong> reduce la acidez del estómago.</li>
+        <li><strong>Ranitidina:</strong> disminuye el ácido gástrico.</li>
+        <li><strong>Antiácidos:</strong> alivian el ardor estomacal rápidamente.</li>
+        <li><strong>Antibióticos:</strong> como claritromicina o amoxicilina (si hay infección).</li>
+      </ul>
+
+      <h2>Recomendaciones para sentirte mejor (sin automedicarte)</h2>
+      <ul>
+        <li>Evita comidas picantes, fritas o muy condimentadas.</li>
+        <li>No fumes ni tomes alcohol.</li>
+        <li>Come porciones pequeñas y frecuentes.</li>
+        <li>Mantente relajado y reduce el estrés.</li>
+        <li>Consulta siempre con un médico si el dolor es frecuente o intenso.</li>
+      </ul>
+
+      <div class="advertencia">
+        Esta información es solo para ayudarte a entender mejor esta enfermedad. No te automediques. Siempre consulta a un médico ante cualquier síntoma o duda que tengas.
+      </div>
+    </div>
+
+    <div class="galeria">
+      <img src="img/gastritis1.jpg" alt="Dolor estomacal">
+      <img src="img/gastritis2.jpg" alt="Alimentos prohibidos">
+      <img src="img/gastritis3.jpg" alt="Tratamiento para gastritis">
+    </div>
+  </div>
+</body>
+</html>

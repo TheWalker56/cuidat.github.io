@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Migraña - Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7f9;
+      margin: 0;
+      padding-top: 90px;
+      color: #004d4d;
+    }
+    .barra-superior {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background-color: #40c9c6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .barra-superior img {
+      height: 50px;
+    }
+    .barra-superior h1 {
+      margin: 0;
+      margin-left: 10px;
+      font-size: 24px;
+      color: white;
+    }
+    .volver-btn {
+      background-color: white;
+      color: #004d4d;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .volver-btn:hover {
+      background-color: #004d4d;
+      color: white;
+    }
+
+    .contenedor {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      gap: 30px;
+    }
+    .texto {
+      flex: 2;
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .galeria {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #008080;
+      border-bottom: 2px solid #40c9c6;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+    ul {
+      line-height: 1.6;
+      margin-left: 20px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .advertencia {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #ffe0e0;
+      color: #8b0000;
+      border-left: 6px solid #ff5e5e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-superior">
+    <div style="display: flex; align-items: center;">
+      <img src="../img/cuidate+ logo.png" alt="Logo" />
+      <h1>CUIDAT +</h1>
+    </div>
+    <button class="volver-btn" onclick="window.location.href='../index.html'">Volver a la página principal</button>
+  </div>
+
+  <div class="contenedor">
+    <div class="texto">
+      <h2>Descripción de la enfermedad</h2>
+      <p>La migraña es un tipo de dolor de cabeza muy fuerte que puede durar horas o incluso días. No es solo un dolor común: viene acompañado de otros síntomas como sensibilidad a la luz, náuseas o visión borrosa. Puede afectar mucho las actividades diarias y el estado de ánimo.</p>
+
+      <h2>Causas</h2>
+      <ul>
+        <li>Herencia (si alguien en tu familia la tiene, puedes tenerla también)</li>
+        <li>Estrés emocional o ansiedad</li>
+        <li>Falta de sueño o cambios en los horarios de descanso</li>
+        <li>Alimentos específicos como chocolate, queso, o cafeína</li>
+        <li>Cambios hormonales, sobre todo en mujeres</li>
+        <li>Estímulos visuales o sonidos fuertes</li>
+      </ul>
+
+      <h2>Secuelas y fases</h2>
+      <p>Una migraña suele tener varias fases: aviso (como sentirte raro), aura (ver luces o perder visión), dolor intenso y recuperación. Si no se trata, puede repetirse seguido y afectar la concentración, el trabajo o la escuela. A largo plazo, algunas personas desarrollan migraña crónica.</p>
+
+      <h2>Tratamiento</h2>
+      <ul>
+        <li>Medicamentos para aliviar el dolor durante la crisis</li>
+        <li>Medicinas preventivas si las migrañas son muy frecuentes</li>
+        <li>Control del estrés y relajación</li>
+        <li>Evitar factores desencadenantes como ciertos alimentos</li>
+        <li>Revisar hábitos de sueño y alimentación</li>
+      </ul>
+
+      <h2>Consejos para lidiar con la enfermedad</h2>
+      <ul>
+        <li>Dormir a la misma hora todos los días</li>
+        <li>Evitar pantallas brillantes o luces parpadeantes</li>
+        <li>Tomar agua constantemente</li>
+        <li>Hacer pausas si pasas muchas horas frente a una pantalla</li>
+        <li>Llevar un diario de migrañas para identificar qué las causa</li>
+      </ul>
+
+      <h2>Medicamentos comunes</h2>
+      <ul>
+        <li>Paracetamol o ibuprofeno (para dolor leve)</li>
+        <li>Triptanes (como sumatriptán) si el dolor es fuerte</li>
+        <li>Medicamentos preventivos: propranolol, topiramato, amitriptilina</li>
+        <li>Antieméticos (para las náuseas)</li>
+      </ul>
+
+      <div class="advertencia">
+        Esta información es educativa. No te automediques. Siempre consulta a un médico ante cualquier síntoma o cambio en tu salud.
+      </div>
+    </div>
+
+    <div class="galeria">
+      <img src="migraña1.jpg" alt="Persona con migraña">
+      <img src="migraña2.jpg" alt="Síntomas comunes de la migraña">
+      <img src="migraña3.jpg" alt="Zonas del dolor de cabeza">
+    </div>
+  </div>
+</body>
+</html>

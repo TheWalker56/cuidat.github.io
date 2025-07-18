@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #e0f7f9; /* turquesa pastel */
+      margin: 0;
+      padding: 0;
+      color: #004d4d;
+    }
+    /* Navbar */
+    .navbar {
+      font-size: 1em;
+      background-color: #40c9c6; /* turquesa medio */
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      box-sizing: border-box;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .navbar .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar .left img {
+      width: 70px;
+      cursor: pointer;
+    }
+    .navbar .left span {
+      font-weight: bold;
+      color: white;
+      font-size: 1.2em;
+      user-select: none;
+    }
+    .navbar .center {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: white;
+    }
+    .navbar .search-box {
+      background: #a0e7e5; /* turquesa pastel */
+      border-radius: 25px;
+      padding: 8px 20px;
+      width: 320px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .search-box label {
+      font-size: 1em;
+      margin-right: 10px;
+      color: #004d4d;
+      user-select: none;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 16px;
+      width: 100%;
+      font-weight: normal;
+      color: #004d4d;
+      padding: 6px 0;
+    }
+    .search-box input::placeholder {
+      color: #007d7d;
+    }
+    .navbar .right a, .navbar .right button {
+      margin-left: 15px;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+    .navbar .right a:hover,
+    .navbar .right button.signup:hover {
+      color: #002d2d;
+    }
+    .navbar .right button.signup {
+      padding: 8px 14px;
+      border-radius: 25px;
+      background-color: #a0e7e5; /* turquesa pastel */
+      border: 1.5px solid #40c9c6;
+      color: #004d4d;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar .right button.signup:hover {
+      background-color: #40c9c6;
+      color: white;
+    }
+
+    /* Contenedor principal */
+    main {
+      padding: 110px 30px 30px 30px;
+      max-width: 1200px;
+      margin: auto;
+      color: #004d4d;
+    }
+
+    /* Títulos */
+    .trending {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #004d4d;
+      text-align: center; /* Centrar */
+    }
+
+    .descripciones{
+      font-size: 1em;
+      color: #000000;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+     /* Contenedor búsqueda síntomas */
+    .search-sintomas {
+      margin: 20px auto 40px auto;
+      max-width: 800px;
+      background: #a0e7e5;
+      border-radius: 25px;
+      font-size: 16px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: #004d4d;
+      font-weight: bold;
+      gap: 10px;
+    }
+    .search-sintomas label {
+      user-select: none;
+      font-size: 1em;
+      min-width: 130px;
+    }
+    .search-sintomas input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+      color: #004d4d;
+      font-weight: normal;
+      padding: 10px 0;
+    }
+    .search-sintomas input::placeholder {
+      color: #007d7d;
+      font-weight: normal;
+    }
+
+    /* Tags categorías populares */
+    .tags {
+      display: inline-block;
+      font-weight: bold;
+      background-color: #a0e7e5; /* turquesa pastel */
+      color: #004d4d;
+      padding: 8px 16px;
+      margin: 6px 8px 18px 0;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .tags:hover {
+      background-color: #7c81805c; /* turquesa medio */
+      color: white;
+    }
+
+    /* Tags síntomas para selección */
+    #tagsSintomas {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #tagsSintomas .tags {
+      display: inline-block;
+      font-weight: bold;
+      background-color: #7c81805c; 
+      color: #000000aa;
+      padding: 8px 16px;
+      margin: 6px 8px 18px 0;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+  
+    }
+    #tagsSintomas .tags:hover {
+      background-color: #7c81805c;
+      color: white;
+    }
+    
+
+
+    /* Catálogo */
+    .producto-catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding-bottom: 40px;
+    }
+
+    .producto {
+      background-color: white;
+      border-radius: 20px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #004d4d;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .producto img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .nombre {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin: 10px 0 8px 0;
+      flex-grow: 1;
+    }
+
+    .vistazo {
+      background-color: white;
+      border: 2px solid #a0e7e5; /* borde turquesa pastel */
+      border-radius: 15px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      font-weight: bold;
+      color: #004d4d;
+    }
+    .vistazo:hover {
+      background-color: #40c9c6; /* turquesa medio */
+      border-color: #40c9c6;
+      color: white;
+    }
+
+    button.buscar-btn {
+       white-space: nowrap;       
+       background-color: #cc0011cf;
+       color: white;
+       border: none;
+       padding: 10px 16px;
+       border-radius: 8px;
+       font-size: 14px;
+       cursor: pointer;
+
+       transition: background-color 0.3s, transform 0.2s;
+   }
+    
+      button.buscar-btn:hover {
+      background-color: #738089;
+      transform: scale(1.05);}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="left">
+      <img src="img/cuidate+ logo.png" alt="Logo cuidat+" />
+      <span>CUIDAT +</span>
+    </div>
+    <div class="right">
+      <span></span>
+      <div class="search-box">
+        <label for="buscador">Buscar:</label>
+        <input type="text" id="buscador" placeholder="Buscar enfermedad..." />
+      </div>
+    </div>
+  
+  </nav>
+
+  <main>
+    <div class="trending">¿Necesitas ayuda? ¡Cuéntanos tus síntomas!</div>
+    <p class="descripciones">
+      Selecciona que sintomas tienes y a partir de ello te brindaremos una lista de las enfermedades que coincidan con tus síntomas
+      y te daremos las mejores recomendaciones para que calmes las molestias en lo que puedas acudir a un médico pronto. ¡RECUERDA NO AUTOMEDICARTE!
+    </p>
+
+    <!-- Segunda barra búsqueda síntomas -->
+    <div class="search-sintomas">
+      <label for="buscadorSintomas">Buscar por síntomas mas especificos:</label>
+      <input type="text" id="buscadorSintomas" placeholder="Escribe tus síntomas aquí...">
+      <button class="buscar-btn" onclick="buscarEnfermedad()">Buscar</button>
+    </div>
+    <div id="resultado" style="text-align: center;"></div>
+
+    <!-- Etiquetas para seleccionar síntomas -->
+    <div id="tagsSintomas">
+      <span class="tags" data-sintoma="dolor de cabeza">dolor de cabeza</span>
+      <span class="tags" data-sintoma="náuseas">náuseas</span>
+      <span class="tags" data-sintoma="sensibilidad a la luz">sensibilidad a la luz</span>
+      <span class="tags" data-sintoma="vómitos">vómitos</span>
+      <span class="tags" data-sintoma="dolor abdominal">dolor abdominal</span>
+      <span class="tags" data-sintoma="acidez">acidez</span>
+      <span class="tags" data-sintoma="indigestión">indigestión</span>
+      <span class="tags" data-sintoma="dificultad para respirar">dificultad para respirar</span>
+      <span class="tags" data-sintoma="tos">tos</span>
+      <span class="tags" data-sintoma="sibilancias">sibilancias</span>
+      <span class="tags" data-sintoma="opresión en el pecho">opresión en el pecho</span>
+    </div>
+
+    <div class="trending" style="margin-top:40px;">Aprende sobre enfermedades:</div>
+    <section class="producto-catalogo" id="catalogo">
+      <div class="producto" data-nombre="Migraña" data-sintomas="dolor de cabeza náuseas sensibilidad a la luz vómitos">
+        <img src="img/Peluches1.jpg" alt="Migraña" />
+        <p class="nombre">Migraña</p>
+        <button class="vistazo" onclick="window.location.href='migraña.html'">Vistazo rápido</button>
+      </div>
+
+      <div class="producto" data-nombre="Gastritis" data-sintomas="dolor abdominal acidez náuseas vómitos indigestión">
+        <img src="img/squirtle.jpg" alt="Gastritis" />
+        <p class="nombre">Gastritis</p>
+        <button class="vistazo" onclick="window.location.href='gastritis.html'">Vistazo rápido</button>
+      </div>
+
+      <div class="producto" data-nombre="Hipertiroidismo" data-sintomas="">
+        <img src="img/squirtle.jpg" alt="Hipertiroidismo" />
+        <p class="nombre">Hipertiroidismo</p>
+        <button class="vistazo" onclick="window.location.href='hipertiroidismo.html'">Vistazo rápido</button>
+      </div>
+
+      <div class="producto" data-nombre="Asma" data-sintomas="dificultad para respirar tos sibilancias opresión en el pecho">
+        <img src="img/Jigglypuff.jpg" alt="Asma" />
+        <p class="nombre">Asma</p>
+        <button class="vistazo" onclick="window.location.href='asma.html'">Vistazo rápido</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    
+    function filtrar() {
+      const filtroNombre = document.getElementById('buscador').value.toLowerCase().trim();
+      const filtroSintomas = document.getElementById('buscadorSintomas').value.toLowerCase().trim();
+      const productos = document.querySelectorAll('.producto');
+
+      productos.forEach(producto => {
+        const nombre = producto.getAttribute('data-nombre').toLowerCase();
+        const sintomas = producto.getAttribute('data-sintomas').toLowerCase();
+
+        // Si hay filtro por nombre, checamos si contiene el texto buscado
+        const cumpleNombre = filtroNombre === '' || nombre.includes(filtroNombre);
+
+        // Si hay filtro por síntomas, checamos si alguno de los términos del input está en la lista de síntomas
+        let cumpleSintomas = true;
+        if (filtroSintomas !== '') {
+          const sintomasBuscados = filtroSintomas.split(/\s+/); // separar por espacios
+          // Validar que al menos uno de los síntomas buscados esté en la lista de síntomas de la enfermedad
+          cumpleSintomas = sintomasBuscados.some(sintoma => sintomas.includes(sintoma));
+        }
+
+        // Mostrar solo si cumple ambos filtros
+        if (cumpleNombre && cumpleSintomas) {
+          producto.style.display = '';
+        } else {
+          producto.style.display = 'none';
+        }
+      });
+    }
+    const enfermedades = {
+      
+      "dolor de cabeza": [
+        {
+          nombre: "Migraña",
+          tratamiento: "Descansa en un lugar oscuro, toma analgésicos y evita el estrés."
+        },
+        {
+          nombre: "Tension ocular",
+          tratamiento: "Descansa la vista, reduce el uso de pantallas y usa gotas si es necesario."
+        },
+        {
+          nombre: "Deshidratacion",
+          tratamiento: "Toma agua y evita el calor."
+        }
+      ],
+      "mareos": [
+        {
+          nombre: "Hipotension",
+          tratamiento: "Siéntate, toma agua, y eleva las piernas."
+        },
+        {
+          nombre: "Problemas del oido interno",
+          tratamiento: "Consulta a un otorrino y evita movimientos bruscos."
+        }
+      ],
+      "fiebre": [
+        {
+          nombre: "Infeccion Viral",
+          tratamiento: "Descansa, toma líquidos y antipiréticos como paracetamol."
+        },
+        {
+          nombre: "Infeccion Bacteriana",
+          tratamiento: "Consulta al médico, podrías necesitar antibióticos."
+        }
+      ],
+      "tos": [
+        { 
+          nombre: "Resfriado comun",
+          tratamiento: "Descansa, mantente hidratado y usa jarabes naturales." 
+        },
+        {     
+          nombre: "Bronquitis", 
+          tratamiento: "Evita fumar, toma medicamentos recetados y líquidos." 
+        }
+      ],
+      "dolor de estomago": [
+        { 
+          nombre: "Gastritis", 
+          tratamiento: "Evita comidas irritantes, toma antiácidos y consulta a un médico." 
+        },
+        { 
+          nombre: "Indigestión", 
+          tratamiento: "Come ligero, evita grasas y toma infusiones como manzanilla."
+        }
+      ],
+      "dificultad para respirar": [
+        { 
+          nombre: "Asma", 
+          tratamiento: "Usa tu inhalador y evita alérgenos."
+         },
+         { 
+          nombre: "COVID-19", 
+          tratamiento: "Aíslate, controla los síntomas y busca atención médica si empeoras." 
+        }
+      ],
+      "dolor en el pecho": [
+        { 
+          nombre: "Ansiedad", 
+          tratamiento: "Respira profundo, relájate y considera apoyo psicológico." 
+         },
+         { 
+          nombre: "Infarto", 
+          tratamiento: "Llama a emergencias inmediatamente. No ignores el dolor." 
+        }
+      ],
+      "dolor muscular": [
+        { 
+          nombre: "Fatiga muscular", 
+          tratamiento: "Descansa, aplica hielo o calor y realiza estiramientos." 
+        },
+        { 
+          nombre: "Fibromialgia", 
+          tratamiento: "Consulta a un reumatólogo, ejercicios suaves y analgésicos pueden ayudar." 
+        }
+      ],
+      "dolor de garganta": [
+        { 
+          nombre: "Faringitis", 
+          tratamiento: "Haz gárgaras con sal, toma líquidos tibios y analgésicos."
+        },
+        { 
+          nombre: "Amigdalitis", 
+          tratamiento: "Consulta al médico, podrías necesitar antibióticos." }
+      ],
+      "ojos rojos": [
+        {  
+          nombre: "Conjuntivitis", 
+          tratamiento: "Lava tus manos frecuentemente, evita tocarte los ojos y usa colirios si es necesario."
+        },
+        { 
+          nombre: "Alergia ocular", 
+          tratamiento: "Evita alérgenos y usa gotas antihistamínicas." }
+        ],
+        "fatiga": [
+         {
+          nombre: "Anemia",
+          tratamiento: "Consume alimentos ricos en hierro y consulta al médico para suplementos."
+        },
+        {
+         nombre: "Hipotiroidismo",
+         tratamiento: "Requiere tratamiento con hormona tiroidea recetada."
+        }
+        ],
+        "perdida de apetito": [
+        {
+         nombre: "Depresión",
+         tratamiento: "Terapia psicológica y seguimiento médico especializado."
+        },
+        {
+         nombre: "Infecciones virales",
+         tratamiento: "Hidratación y descanso hasta que los síntomas mejoren."
+        }
+        ],
+        "perdida de peso": [
+        {
+        nombre: "Diabetes tipo 1",
+        tratamiento: "Control de insulina, dieta adecuada y ejercicio controlado."
+        },
+        {
+        nombre: "Hipertiroidismo",
+        tratamiento: "Medicamentos antitiroideos y supervisión médica."
+        }
+        ],
+       "vision borrosa": [
+       {
+       nombre: "Diabetes no controlada",
+       tratamiento: "Controlar glucosa y visitar al oftalmólogo regularmente."
+      },
+      {
+      nombre: "Cataratas",
+      tratamiento: "Cirugía ambulatoria con oftalmólogo especializado."
+      }
+      ],
+      "palpitaciones": [
+      {
+      nombre: "Arritmia cardíaca",
+      tratamiento: "Monitoreo cardíaco, medicamentos o intervenciones especializadas."
+      },
+      {
+      nombre: "Ataque de panico",
+      tratamiento: "Técnicas de respiración, apoyo psicológico, terapia."
+      }
+      ],
+      "temblores": [
+      {
+      nombre: "Enfermedad de Parkinson",
+      tratamiento: "Tratamiento neurológico especializado y medicamentos."
+      },
+      {
+      nombre: "Hipoglucemia",
+      tratamiento: "Ingerir alimentos con azúcar rápidamente."
+      }
+      ],
+      "picazon en la piel": [
+      {
+      nombre: "Alergia cutanea",
+      tratamiento: "Evita el alérgeno y usa cremas antihistamínicas."
+      },
+      {
+      nombre: "Dermatitis",
+      tratamiento: "Cremas con corticoides y buena higiene."
+      }
+      ],
+      "hinchazon abdominal": [
+      {
+      nombre: "Síndrome de intestino irritable (SII)",
+      tratamiento: "Dieta adecuada, manejo del estrés y medicamentos."
+      },
+      { 
+      nombre: "Retencion de liquidos",
+      tratamiento: "Reducir sodio, beber más agua y consulta médica."
+      }
+      ],
+      "manchas en la piel": [
+      {
+      nombre: "Melasma",
+      tratamiento: "Usar protector solar y cremas despigmentantes."
+      },
+      {
+      nombre: "Lupus",
+      tratamiento: "Tratamiento inmunológico supervisado por reumatólogo."
+      }
+      ],
+      "tos con sangre": [
+      {  
+      nombre: "Tuberculosis",
+      tratamiento: "Tratamiento antibiótico prolongado y aislamiento."
+      },
+      {
+      nombre: "Cáncer de pulmón",
+      tratamiento: "Tratamiento oncológico especializado según el estadio."
+      }
+      ],
+     "falta de concentracion": [
+     {
+     nombre: "Trastorno por Déficit de Atención (TDAH)",
+     tratamiento: "Evaluación psicológica, terapia y medicamentos."
+     },
+     {
+    nombre: "Fatiga mental",
+    tratamiento: "Descanso, técnicas de estudio y alimentación balanceada."
+    }
+    ],
+    "insomnio": [
+    {
+    nombre: "Ansiedad",
+    tratamiento: "Terapia cognitiva, higiene del sueño y relajación."
+    },
+    {
+    nombre: "Apnea del sueño",
+    tratamiento: "Uso de CPAP, pérdida de peso y diagnóstico por especialista."
+    }
+    ],
+    "dolor en las articulaciones": [
+    {
+    nombre: "Artritis reumatoide",
+    tratamiento: "Antiinflamatorios, fisioterapia y tratamiento inmunológico."
+    },
+    {
+    nombre: "Osteoartritis",
+    tratamiento: "Analgésicos, ejercicios suaves y cambios en el estilo de vida."
+    }
+    ],
+    "estreñimiento": [
+    {
+    nombre: "Colón irritable",
+    tratamiento: "Fibra, probióticos y control del estrés."
+    },
+    {
+    nombre: "Falta de fibra",
+    tratamiento: "Ingerir más frutas, vegetales y líquidos."
+    }
+    ],
+    "diarrea": [
+    {
+    nombre: "Infección intestinal",
+    tratamiento: "Hidratación y dieta blanda; si persiste, consulta médica."
+    },
+    {
+    nombre: "Intolerancia a la lactosa",
+    tratamiento: "Evita productos lácteos y busca alternativas sin lactosa."
+    }
+    ],
+    "dolor lumbar": [
+    {
+    nombre: "Lumbalgia mecánica",
+    tratamiento: "Reposo relativo, calor local y analgésicos."
+    },
+    {
+    nombre: "Hernia de disco",
+    tratamiento: "Terapia física, medicamentos y en casos graves, cirugía."
+    }
+    ],
+    "ardor al orinar": [
+    {
+    nombre: "Infección urinaria",
+    tratamiento: "Antibióticos prescritos por un médico."
+    },
+    {
+    nombre: "Cistitis",
+    tratamiento: "Hidratación, analgésicos urinarios y control médico."
+    }
+    ],
+    "piel amarilla": [
+    {
+    nombre: "Hepatitis",
+    tratamiento: "Reposo, dieta balanceada y seguimiento médico."
+    },
+    {
+    nombre: "Ictericia",
+    tratamiento: "Depende de la causa subyacente; requiere diagnóstico médico."
+    }
+    ],
+    "hinchazon de piernas": [
+    {
+    nombre: "Insuficiencia venosa",
+    tratamiento: "Elevar las piernas, medias de compresión y control vascular."
+    },
+    {
+    nombre: "Trombosis venosa profunda",
+    tratamiento: "Tratamiento anticoagulante urgente."
+    }
+    ],
+    "zumbido en los oidos": [
+     {
+     nombre: "Tinnitus",
+    tratamiento: "Evitar ruidos fuertes, manejo del estrés y consulta médica."
+    },
+    {
+    nombre: "Pérdida auditiva",
+    tratamiento: "Evaluación con audiólogo, puede requerir audífonos."
+    }
+    ]    
+    };
+
+    function buscarEnfermedad() {
+      const sintoma = document.getElementById("buscadorSintomas").value.toLowerCase().trim();
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "";
+
+      let encontrado = false;
+
+      for (let clave in enfermedades) {
+        if (sintoma.includes(clave)) {
+          if (!encontrado) {
+            resultadoDiv.innerHTML = `<h2>Resultados para: "${sintoma}"</h2>`;
+            encontrado = true;
+          }
+
+          enfermedades[clave].forEach(enf => {
+            resultadoDiv.innerHTML += `
+              <div class="enfermedad">
+                <h3>${enf.nombre}</h3>
+                <p><strong>Tratamiento:</strong> ${enf.tratamiento}</p>
+              </div>
+            `;
+          });
+        }
+      }
+
+      if (!encontrado) {
+        resultadoDiv.innerHTML = `<p>No se encontró ninguna enfermedad relacionada con ese síntoma.</p>`;
+      }
+    }
+  </script>
+
+  <script>
+    const tagsSintomas = document.getElementById('tagsSintomas');
+    const productos = document.querySelectorAll('.producto');
+    const inputNombre = document.getElementById('buscador');
+
+    // Guardamos síntomas seleccionados
+    let sintomasSeleccionados = new Set();
+
+    // Evento para seleccionar/deseleccionar síntomas
+    tagsSintomas.addEventListener('click', e => {
+      if (e.target.classList.contains('tags')) {
+        const sintoma = e.target.getAttribute('data-sintoma');
+
+        if (sintomasSeleccionados.has(sintoma)) {
+          sintomasSeleccionados.delete(sintoma);
+          e.target.style.backgroundColor = '#a0e7e5'; // turquesa pastel (normal)
+          e.target.style.color = '#004d4d';
+        } else {
+          sintomasSeleccionados.add(sintoma);
+          e.target.style.backgroundColor = '#40c9c6'; // turquesa medio (seleccionado)
+          e.target.style.color = 'white';
+        }
+
+        filtrar();
+      }
+    });
+
+    // Función para filtrar productos
+    function filtrar() {
+      const filtroNombre = inputNombre.value.toLowerCase().trim();
+
+      productos.forEach(producto => {
+        const nombre = producto.getAttribute('data-nombre').toLowerCase();
+        const sintomas = producto.getAttribute('data-sintomas').toLowerCase();
+
+        // Verifica que el nombre coincida con el filtro de texto
+        const cumpleNombre = filtroNombre === '' || nombre.includes(filtroNombre);
+
+        // Verifica que el producto tenga todos los síntomas seleccionados
+        let cumpleSintomas = true;
+        sintomasSeleccionados.forEach(sintomaSel => {
+          if (!sintomas.includes(sintomaSel)) {
+            cumpleSintomas = false;
+          }
+        });
+
+        if (cumpleNombre && cumpleSintomas) {
+          producto.style.display = '';
+        } else {
+          producto.style.display = 'none';
+        }
+      });
+    }
+
+    // También filtramos al escribir en la barra de nombre
+    inputNombre.addEventListener('keyup', filtrar);
+  </script>
+</body>
+</html>

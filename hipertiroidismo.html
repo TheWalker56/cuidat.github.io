@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hipertiroidismo - Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7f9;
+      margin: 0;
+      padding-top: 90px;
+      color: #004d4d;
+    }
+    .barra-superior {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background-color: #40c9c6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .barra-superior img {
+      height: 50px;
+    }
+    .barra-superior h1 {
+      margin: 0;
+      margin-left: 10px;
+      font-size: 24px;
+      color: white;
+    }
+    .volver-btn {
+      background-color: white;
+      color: #004d4d;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .volver-btn:hover {
+      background-color: #004d4d;
+      color: white;
+    }
+    .contenedor {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      gap: 30px;
+    }
+    .texto {
+      flex: 2;
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .galeria {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #008080;
+      border-bottom: 2px solid #40c9c6;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+    ul {
+      line-height: 1.6;
+      margin-left: 20px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .advertencia {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #ffe0e0;
+      color: #8b0000;
+      border-left: 6px solid #ff5e5e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-superior">
+    <div style="display: flex; align-items: center;">
+      <img src="img/cuidate+ logo.png" alt="Logo" />
+      <h1>CUIDAT +</h1>
+    </div>
+    <button class="volver-btn" onclick="window.location.href='../index.html'">Volver a la página principal</button>
+  </div>
+
+  <div class="contenedor">
+    <div class="texto">
+      <h2>¿Qué es el hipertiroidismo?</h2>
+      <p>El hipertiroidismo es cuando una parte del cuerpo llamada tiroides (una glándula que está en el cuello) trabaja más de lo que debería. La tiroides produce unas sustancias llamadas hormonas que controlan muchas funciones del cuerpo, como la velocidad con la que late el corazón o cómo usamos la energía de los alimentos. Cuando hay demasiadas de estas hormonas, el cuerpo se acelera y puedes sentirte nervioso, cansado o tener palpitaciones.</p>
+
+      <h2>¿Por qué sucede?</h2>
+      <ul>
+        <li><strong>Enfermedad de Graves:</strong> el cuerpo se confunde y ataca su propia tiroides, haciéndola trabajar de más.</li>
+        <li><strong>Bultitos en la tiroides:</strong> algunos nódulos pueden hacer que se produzcan más hormonas.</li>
+        <li><strong>Tiroiditis:</strong> es cuando la tiroides se inflama, a veces por una infección o por el sistema inmune.</li>
+        <li><strong>Mucho yodo:</strong> el yodo está en algunos alimentos y medicinas, y en exceso puede alterar la tiroides.</li>
+      </ul>
+
+      <h2>¿Qué puede pasar si no se trata?</h2>
+      <p>Si no se cuida a tiempo, el hipertiroidismo puede causar problemas más graves como huesos débiles, ritmo del corazón descontrolado o mucho cansancio. En casos más graves, puede llevar a una crisis tiroidea, que es una emergencia médica. También puede pasar que el tratamiento haga que la tiroides se apague demasiado, causando <strong>hipotiroidismo</strong> (lo contrario: hormonas muy bajas).</p>
+
+      <h2>¿Cómo se trata?</h2>
+      <ul>
+        <li><strong>Medicamentos:</strong> ayudan a que la tiroides produzca menos hormonas.</li>
+        <li><strong>Yodo radiactivo:</strong> reduce el tamaño y la actividad de la tiroides.</li>
+        <li><strong>Cirugía:</strong> se puede quitar una parte de la glándula o toda si es necesario.</li>
+        <li><strong>Medicinas para los síntomas:</strong> como los betabloqueadores, que bajan el ritmo del corazón y ayudan a que te sientas mejor.</li>
+      </ul>
+
+      <h2>Medicamentos que usualmente se recetan </h2>
+      <ul>
+        <li><strong>Metimazol:</strong> Reduce la cantidad de hormonas que produce la tiroides.</li>
+        <li><strong>Propiltiouracilo (PTU):</strong> Similar al metimazol, pero a veces se usa en mujeres embarazadas.</li>
+        <li><strong>Propranolol:</strong> Un betabloqueador que ayuda con el ritmo del corazón y la ansiedad.</li>
+        <li><strong>Yodo radiactivo:</strong> No es una pastilla diaria, sino un tratamiento para disminuir la tiroides.</li>
+      </ul>
+
+      <h2>Recomendaciones para sentirte mejor (sin automedicarte)</h2>
+      <ul>
+        <li>Evita alimentos con mucho yodo (como algas o sal yodada)</li>
+        <li>Ve al endocrinólogo (especialista en hormonas) regularmente</li>
+        <li>Evita alimentos con mucho yodo como algas, sal yodada o suplementos sin indicación médica.</li>
+        <li>Duerme bien y evita el estrés, que puede empeorar los síntomas.</li>
+        <li>Haz ejercicio suave si tu médico lo permite, como caminar o yoga.</li>
+        <li>Ve con un endocrinólogo (médico especializado en hormonas) para revisiones frecuentes.</li>
+        <li>Nunca dejes tus medicinas sin preguntar al doctor.</li>
+      </ul>
+
+      <div class="advertencia">
+        Esta información es solo para ayudarte a entender mejor esta enfermedad. No te automediques. Siempre consulta a un médico ante cualquier síntoma o duda que tengas.
+      </div>
+    </div>
+
+    <div class="galeria">
+      <img src="img/hipertiroidismo1.jpg" alt="Tiroides inflamada">
+      <img src="img/hipertiroidismo2.jpg" alt="Síntomas comunes">
+      <img src="img/hipertiroidismo3.jpg" alt="Tratamiento médico">
+    </div>
+  </div>
+</body>
+</html>
