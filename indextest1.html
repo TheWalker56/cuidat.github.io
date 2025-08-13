@@ -238,9 +238,9 @@
       color: white;
     }
 
-    /* Fix StackAI chatbot button blocking - LOWER z-index for chatbot */
+    /* Fix StackAI chatbot button blocking - PROPER z-index for button-style chatbot */
     #stack-ai-widget {
-      z-index: 1 !important;
+      z-index: 9999 !important;
       pointer-events: auto !important;
     }
 
@@ -255,43 +255,43 @@
       pointer-events: auto !important;
     }
     
-    /* Ensure buttons are always clickable - HIGHER than chatbot */
+    /* Ensure buttons are always clickable - LOWER than chatbot window */
     .vistazo {
       position: relative !important;
-      z-index: 200 !important;
+      z-index: 100 !important;
       pointer-events: auto !important;
     }
     
-    /* Ensure search inputs are clickable - HIGHER than chatbot */
+    /* Ensure search inputs are clickable - LOWER than chatbot window */
     .search-box, .search-sintomas {
       position: relative !important;
-      z-index: 150 !important;
+      z-index: 100 !important;
       pointer-events: auto !important;
     }
 
-    /* Fix any StackAI iframe issues - LOWER z-index */
+    /* Fix any StackAI iframe issues - HIGH z-index for chat window */
     iframe[src*="stack-ai"] {
-      z-index: 1 !important;
+      z-index: 9999 !important;
       pointer-events: auto !important;
     }
 
     /* Additional fix for StackAI elements */
     [data-stack-ai-widget] {
-      z-index: 1 !important;
+      z-index: 9999 !important;
     }
 
     /* More aggressive StackAI targeting */
     div[id*="stack"], div[class*="stack"], iframe[src*="stack"] {
-      z-index: 1 !important;
+      z-index: 9999 !important;
       pointer-events: auto !important;
     }
 
     /* Target any overlay or document viewer */
     div[style*="z-index"], div[style*="position: fixed"], div[style*="position:fixed"] {
-      z-index: 1 !important;
+      z-index: 9999 !important;
     }
 
-    /* Ensure all interactive elements are above chatbot */
+    /* Ensure all interactive elements are below chatbot window */
     .producto {
       position: relative !important;
       z-index: 100 !important;
@@ -408,7 +408,7 @@
       );
       
       stackElements.forEach(element => {
-        element.style.zIndex = '1';
+        element.style.zIndex = '9999';
         element.style.pointerEvents = 'auto';
       });
 
@@ -416,7 +416,7 @@
       const overlays = document.querySelectorAll('div[style*="z-index"], div[style*="position: fixed"], div[style*="position:fixed"]');
       overlays.forEach(overlay => {
         if (overlay.id.includes('stack') || overlay.className.includes('stack')) {
-          overlay.style.zIndex = '1';
+          overlay.style.zIndex = '9999';
         }
       });
     }
