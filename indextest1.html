@@ -238,28 +238,29 @@
        color: white;
      }
 
-     /* Chatbot styles - ensure it doesn't interfere with page elements */
-     .chatbot-button {
-       position: fixed !important;
-       bottom: 20px !important;
-       right: 20px !important;
-       width: 60px !important;
-       height: 60px !important;
-       background: #40c9c6 !important;
-       border-radius: 50% !important;
-       border: none !important;
-       cursor: pointer !important;
-       box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-       display: flex !important;
-       align-items: center !important;
-       justify-content: center !important;
-       color: white !important;
-       font-size: 24px !important;
-       font-weight: bold !important;
-       z-index: 9999 !important;
-       transition: transform 0.2s ease !important;
-       overflow: hidden !important;
-     }
+           /* Chatbot styles - ensure it doesn't interfere with page elements */
+      .chatbot-button {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 60px !important;
+        height: 60px !important;
+        background: #40c9c6 !important;
+        border-radius: 50% !important;
+        border: none !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: white !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        z-index: 1000 !important;
+        transition: transform 0.2s ease !important;
+        overflow: hidden !important;
+        pointer-events: auto !important;
+      }
 
      .chatbot-button:hover {
        transform: scale(1.1) !important;
@@ -347,19 +348,34 @@
        color: #333 !important;
      }
 
-     /* Ensure page elements have proper z-index */
-     .navbar {
-       z-index: 10000 !important;
-     }
+           /* Ensure page elements have proper z-index */
+      .navbar {
+        z-index: 10000 !important;
+      }
 
-     .producto, .vistazo, .search-sintomas, .tags {
-       position: relative !important;
-       z-index: 1 !important;
-     }
+      .producto, .vistazo, .search-sintomas, .tags {
+        position: relative !important;
+        z-index: 100 !important;
+        pointer-events: auto !important;
+      }
+      
+      /* Ensure buttons are always clickable */
+      .vistazo {
+        position: relative !important;
+        z-index: 200 !important;
+        pointer-events: auto !important;
+      }
+      
+      /* Ensure search inputs are clickable */
+      .search-box, .search-sintomas {
+        position: relative !important;
+        z-index: 150 !important;
+        pointer-events: auto !important;
+      }
    </style>
 </head>
 <body>
-  <script src="./chat.js"></script>
+
      <nav class="navbar">
      <div class="left">
        <img src="img/cuidate+ logo.png" alt="Logo cuidat+" />
