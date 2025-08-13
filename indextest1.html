@@ -397,41 +397,39 @@
     src="https://unpkg.com/react-stackai@latest/dist/vanilla/vanilla-stackai.js"
     data-project-url="https://www.stack-ai.com/embed/06354467-5cdb-4c07-a9e7-c631662ed8f5/5083196c-b5d7-4110-bd4a-fa50e90e2b02/6887edf67b3fd2ada170608d">
   </script>
+ <iframe
+  id="iframeId"
+  src="[YOUR_CHATBOT_URL_HERE]"
+  width="350"
+  height="600"
+  frameborder="0"
+  style="position: fixed; z-index: 1; bottom: 15px; right: 15px; max-width: calc(100vw - 15px); max-height: calc(100vh - 15px);"
+></iframe>
 
-  <!-- Fix StackAI z-index dynamically -->
-  <script>
-    // Function to fix StackAI z-index
-    function fixStackAIZIndex() {
-      // Target all possible StackAI elements
-      const stackElements = document.querySelectorAll(
-        '#stack-ai-widget, [data-stack-ai-widget], iframe[src*="stack"], div[id*="stack"], div[class*="stack"]'
-      );
-      
-      stackElements.forEach(element => {
-        element.style.zIndex = '9999';
-        element.style.pointerEvents = 'auto';
-      });
-
-      // Target any overlays or document viewers
-      const overlays = document.querySelectorAll('div[style*="z-index"], div[style*="position: fixed"], div[style*="position:fixed"]');
-      overlays.forEach(overlay => {
-        if (overlay.id.includes('stack') || overlay.className.includes('stack')) {
-          overlay.style.zIndex = '9999';
+<!-- Script for handling the resizing -->
+<script>
+  function handleMessage(event) {
+    if (event.data.type === 'chatbotStateChange') {
+      const iframe = document.getElementById('iframeId')
+      if (iframe) {
+        if (event.data.isClosed) {
+          iframe.style.width = '60px'
+          iframe.style.height = '60px'
+        } else {
+          iframe.style.width = '350px'
+          iframe.style.height = '600px'
         }
-      });
+      }
     }
+  }
 
-    // Run immediately
-    fixStackAIZIndex();
+  // Attach event listener
+  window.addEventListener('message', handleMessage)
 
-    // Run after a delay to catch dynamically loaded elements
-    setTimeout(fixStackAIZIndex, 1000);
-    setTimeout(fixStackAIZIndex, 3000);
-    setTimeout(fixStackAIZIndex, 5000);
-
-    // Run when DOM changes (for dynamically added elements)
-    const observer = new MutationObserver(fixStackAIZIndex);
-    observer.observe(document.body, { childList: true, subtree: true });
-  </script>
+  // If you want to clean up the event listener when the page unloads (optional)
+  window.addEventListener('beforeunload', function () {
+    window.removeEventListener('message', handleMessage)
+  })
+</script>
 </body>
 </html>
