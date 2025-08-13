@@ -222,68 +222,16 @@
       font-weight: bold;
       color: #004d4d;
     }
-         .vistazo:hover {
-       background-color: #40c9c6; /* turquesa medio */
-       border-color: #40c9c6;
-       color: white;
-     }
-
-           /* Estilos para el chatbot - evitar que bloquee elementos */
-      #stack-ai-widget {
-        z-index: 9999 !important;
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        pointer-events: auto !important;
-      }
-      
-      /* Estilos adicionales para asegurar que el chatbot aparezca */
-      [data-stack-ai-widget] {
-        z-index: 9999 !important;
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        pointer-events: auto !important;
-      }
-      
-      /* Estilos para cualquier iframe del chatbot */
-      iframe[src*="stack-ai"] {
-        z-index: 9999 !important;
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        pointer-events: auto !important;
-      }
-     
-     /* Asegurar que los botones y elementos interactivos tengan z-index apropiado */
-     .navbar {
-       z-index: 10000 !important;
-     }
-     
-     .producto {
-       position: relative;
-       z-index: 1;
-     }
-     
-     .vistazo {
-       position: relative;
-       z-index: 2;
-     }
-     
-     .search-sintomas {
-       position: relative;
-       z-index: 2;
-     }
-     
-          .tags {
-       position: relative;
-       z-index: 2;
-     }
-   </style>
-       
-   </head>
-  <body>
-    <nav class="navbar">
+    .vistazo:hover {
+      background-color: #40c9c6; /* turquesa medio */
+      border-color: #40c9c6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <script src="./chat.js"></script>
+  <nav class="navbar">
     <div class="left">
       <img src="img/logo sp.png" alt="Logo SillyPlush" />
     </div>
@@ -365,180 +313,13 @@
           producto.style.display = '';
         } else {
           producto.style.display = 'none';
-                 }
-       });
-          }
-         </script>
-     
-     <!-- Chatbot Script -->
-     <script>
-       // Wait for DOM to be fully loaded
-       document.addEventListener('DOMContentLoaded', function() {
-         // Create chatbot container
-         const chatbotContainer = document.createElement('div');
-         chatbotContainer.id = 'stack-ai-widget';
-         chatbotContainer.style.cssText = `
-           position: fixed !important;
-           bottom: 20px !important;
-           right: 20px !important;
-           z-index: 9999 !important;
-           width: 60px !important;
-           height: 60px !important;
-           background: #40c9c6 !important;
-           border-radius: 50% !important;
-           cursor: pointer !important;
-           box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-           display: flex !important;
-           align-items: center !important;
-           justify-content: center !important;
-           color: white !important;
-           font-size: 24px !important;
-           font-weight: bold !important;
-         `;
-         chatbotContainer.innerHTML = '💬';
-         document.body.appendChild(chatbotContainer);
-
-         // Add click event to open chat
-         chatbotContainer.addEventListener('click', function() {
-           // Create chat window
-           const chatWindow = document.createElement('div');
-           chatWindow.id = 'chat-window';
-           chatWindow.style.cssText = `
-             position: fixed !important;
-             bottom: 90px !important;
-             right: 20px !important;
-             width: 350px !important;
-             height: 500px !important;
-             background: white !important;
-             border-radius: 15px !important;
-             box-shadow: 0 8px 24px rgba(0,0,0,0.3) !important;
-             z-index: 9998 !important;
-             display: flex !important;
-             flex-direction: column !important;
-             overflow: hidden !important;
-           `;
-
-           // Chat header
-           const chatHeader = document.createElement('div');
-           chatHeader.style.cssText = `
-             background: #40c9c6 !important;
-             color: white !important;
-             padding: 15px !important;
-             font-weight: bold !important;
-             display: flex !important;
-             justify-content: space-between !important;
-             align-items: center !important;
-           `;
-           chatHeader.innerHTML = `
-             <span>Asistente Médico</span>
-             <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer;">×</button>
-           `;
-
-           // Chat messages area
-           const chatMessages = document.createElement('div');
-           chatMessages.id = 'chat-messages';
-           chatMessages.style.cssText = `
-             flex: 1 !important;
-             padding: 15px !important;
-             overflow-y: auto !important;
-             background: #f8f9fa !important;
-           `;
-
-           // Add welcome message
-           chatMessages.innerHTML = `
-             <div style="background: white; padding: 10px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-               <strong>Asistente:</strong> ¡Hola! Soy tu asistente médico virtual. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre síntomas, enfermedades o consejos de salud.
-             </div>
-           `;
-
-           // Chat input area
-           const chatInput = document.createElement('div');
-           chatInput.style.cssText = `
-             padding: 15px !important;
-             background: white !important;
-             border-top: 1px solid #e0e0e0 !important;
-             display: flex !important;
-             gap: 10px !important;
-           `;
-
-           const input = document.createElement('input');
-           input.type = 'text';
-           input.placeholder = 'Escribe tu mensaje...';
-           input.style.cssText = `
-             flex: 1 !important;
-             padding: 10px !important;
-             border: 1px solid #ddd !important;
-             border-radius: 20px !important;
-             outline: none !important;
-           `;
-
-           const sendBtn = document.createElement('button');
-           sendBtn.innerHTML = 'Enviar';
-           sendBtn.style.cssText = `
-             padding: 10px 15px !important;
-             background: #40c9c6 !important;
-             color: white !important;
-             border: none !important;
-             border-radius: 20px !important;
-             cursor: pointer !important;
-           `;
-
-           // Add send functionality
-           function sendMessage() {
-             const message = input.value.trim();
-             if (message) {
-               // Add user message
-               chatMessages.innerHTML += `
-                 <div style="background: #40c9c6; color: white; padding: 10px; border-radius: 10px; margin-bottom: 10px; text-align: right; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                   <strong>Tú:</strong> ${message}
-                 </div>
-               `;
-
-               // Simple bot response
-               let response = 'Gracias por tu consulta. Te recomiendo consultar con un profesional de la salud para obtener un diagnóstico preciso.';
-               
-               if (message.toLowerCase().includes('dolor de cabeza')) {
-                 response = 'El dolor de cabeza puede tener muchas causas. Te recomiendo descansar en un lugar tranquilo, tomar agua y si persiste, consultar a un médico.';
-               } else if (message.toLowerCase().includes('fiebre')) {
-                 response = 'La fiebre es un síntoma común. Mantente hidratado, descansa y si supera los 39°C o persiste más de 3 días, busca atención médica.';
-               } else if (message.toLowerCase().includes('gastritis')) {
-                 response = 'Para la gastritis, evita comidas irritantes, come en horarios regulares y consulta a un gastroenterólogo si los síntomas persisten.';
-               }
-
-               // Add bot response
-               setTimeout(() => {
-                 chatMessages.innerHTML += `
-                   <div style="background: white; padding: 10px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                     <strong>Asistente:</strong> ${response}
-                   </div>
-                 `;
-                 chatMessages.scrollTop = chatMessages.scrollHeight;
-               }, 1000);
-
-               input.value = '';
-               chatMessages.scrollTop = chatMessages.scrollHeight;
-             }
-           }
-
-           sendBtn.addEventListener('click', sendMessage);
-           input.addEventListener('keypress', function(e) {
-             if (e.key === 'Enter') {
-               sendMessage();
-             }
-           });
-
-           chatInput.appendChild(input);
-           chatInput.appendChild(sendBtn);
-
-           chatWindow.appendChild(chatHeader);
-           chatWindow.appendChild(chatMessages);
-           chatWindow.appendChild(chatInput);
-
-           document.body.appendChild(chatWindow);
-         });
-       });
-     </script>
-   </body>
-</html>
-  </body>
+        }
+      });
+    }
+  </script>
+  <script
+    src="https://unpkg.com/react-stackai@latest/dist/vanilla/vanilla-stackai.js"
+    data-project-url="https://www.stack-ai.com/embed/06354467-5cdb-4c07-a9e7-c631662ed8f5/5083196c-b5d7-4110-bd4a-fa50e90e2b02/6887edf67b3fd2ada170608d">
+  </script>
+</body>
 </html>
