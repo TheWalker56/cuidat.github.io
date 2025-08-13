@@ -238,9 +238,9 @@
       color: white;
     }
 
-    /* Fix StackAI chatbot button blocking */
+    /* Fix StackAI chatbot button blocking - LOWER z-index for chatbot */
     #stack-ai-widget {
-      z-index: 1000 !important;
+      z-index: 1 !important;
       pointer-events: auto !important;
     }
 
@@ -255,24 +255,51 @@
       pointer-events: auto !important;
     }
     
-    /* Ensure buttons are always clickable */
+    /* Ensure buttons are always clickable - HIGHER than chatbot */
     .vistazo {
       position: relative !important;
       z-index: 200 !important;
       pointer-events: auto !important;
     }
     
-    /* Ensure search inputs are clickable */
+    /* Ensure search inputs are clickable - HIGHER than chatbot */
     .search-box, .search-sintomas {
       position: relative !important;
       z-index: 150 !important;
       pointer-events: auto !important;
     }
 
-    /* Fix any StackAI iframe issues */
+    /* Fix any StackAI iframe issues - LOWER z-index */
     iframe[src*="stack-ai"] {
-      z-index: 1000 !important;
+      z-index: 1 !important;
       pointer-events: auto !important;
+    }
+
+    /* Additional fix for StackAI elements */
+    [data-stack-ai-widget] {
+      z-index: 1 !important;
+    }
+
+    /* More aggressive StackAI targeting */
+    div[id*="stack"], div[class*="stack"], iframe[src*="stack"] {
+      z-index: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Target any overlay or document viewer */
+    div[style*="z-index"], div[style*="position: fixed"], div[style*="position:fixed"] {
+      z-index: 1 !important;
+    }
+
+    /* Ensure all interactive elements are above chatbot */
+    .producto {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+
+    .tags {
+      position: relative !important;
+      z-index: 100 !important;
     }
 
   </style>
@@ -369,6 +396,42 @@
   <script
     src="https://unpkg.com/react-stackai@latest/dist/vanilla/vanilla-stackai.js"
     data-project-url="https://www.stack-ai.com/embed/06354467-5cdb-4c07-a9e7-c631662ed8f5/5083196c-b5d7-4110-bd4a-fa50e90e2b02/6887edf67b3fd2ada170608d">
+  </script>
+
+  <!-- Fix StackAI z-index dynamically -->
+  <script>
+    // Function to fix StackAI z-index
+    function fixStackAIZIndex() {
+      // Target all possible StackAI elements
+      const stackElements = document.querySelectorAll(
+        '#stack-ai-widget, [data-stack-ai-widget], iframe[src*="stack"], div[id*="stack"], div[class*="stack"]'
+      );
+      
+      stackElements.forEach(element => {
+        element.style.zIndex = '1';
+        element.style.pointerEvents = 'auto';
+      });
+
+      // Target any overlays or document viewers
+      const overlays = document.querySelectorAll('div[style*="z-index"], div[style*="position: fixed"], div[style*="position:fixed"]');
+      overlays.forEach(overlay => {
+        if (overlay.id.includes('stack') || overlay.className.includes('stack')) {
+          overlay.style.zIndex = '1';
+        }
+      });
+    }
+
+    // Run immediately
+    fixStackAIZIndex();
+
+    // Run after a delay to catch dynamically loaded elements
+    setTimeout(fixStackAIZIndex, 1000);
+    setTimeout(fixStackAIZIndex, 3000);
+    setTimeout(fixStackAIZIndex, 5000);
+
+    // Run when DOM changes (for dynamically added elements)
+    const observer = new MutationObserver(fixStackAIZIndex);
+    observer.observe(document.body, { childList: true, subtree: true });
   </script>
 </body>
 </html>
