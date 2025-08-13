@@ -238,6 +238,42 @@
       color: white;
     }
 
+    /* Fix StackAI chatbot button blocking */
+    #stack-ai-widget {
+      z-index: 1000 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Ensure page elements have proper z-index and are clickable */
+    .navbar {
+      z-index: 10000 !important;
+    }
+
+    .producto, .vistazo, .search-sintomas, .tags {
+      position: relative !important;
+      z-index: 100 !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Ensure buttons are always clickable */
+    .vistazo {
+      position: relative !important;
+      z-index: 200 !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Ensure search inputs are clickable */
+    .search-box, .search-sintomas {
+      position: relative !important;
+      z-index: 150 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Fix any StackAI iframe issues */
+    iframe[src*="stack-ai"] {
+      z-index: 1000 !important;
+      pointer-events: auto !important;
+    }
 
   </style>
 </head>
