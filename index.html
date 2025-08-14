@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fdfefd; /* turquesa pastel */
+      margin: 0;
+      padding: 0;
+      color: #004d4d;
+    }
+
+    /* Fondo fijo en la parte superior */
+    .fondo-arriba {
+      background-image: url('img/Cuidate+ fondo4.0.png'); /* Cambia por tu imagen */
+      background-size: cover;
+      background-position: center;
+      height: 850px; /* altura visible */
+      width: 1500px;
+      position: relative; /* para posicionar elementos absolutos dentro */
+      margin: 0 auto; /* centrar horizontalmente la imagen/fondo */
+      max-width: 100%;
+    }
+
+    .btn-primeros-auxilios {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background-color: #e63946; /* rojo alerta */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.btn-primeros-auxilios:hover {
+  background-color: #b71c1c; /* rojo más oscuro */
+  transform: scale(1.05);
+}
+
+
+    /* Navbar */
+    .navbar {
+      font-size: 1em;
+      background-color: #07191800; /* turquesa medio */
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      box-sizing: border-box;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0);
+    }
+    .navbar .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar .left img {
+      width: 200px;
+      cursor: pointer;
+    }
+    .navbar .left span {
+      font-weight: bold;
+      color: white;
+      font-size: 1.7em;
+      user-select: none;
+    }
+
+   /* Barra de búsqueda encima del fondo */
+.search-container {
+  position: absolute;
+  top: 530px; /* ajusta la distancia desde arriba */
+  left: 31%;
+  transform: translateX(-50%);
+  width: 600px; /* controla el largo horizontal */
+  background: #ddeeec;
+  border-radius: 25px;
+  border: 2px solid #004d4d;
+  padding: 8px 20px; /* padding normal */
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  justify-content: flex-start; /* contenido empieza a la izquierda */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
+  z-index: 10;
+}
+
+.search-container label {
+  color: #004d4d;
+  margin-right: 15px; /* espacio entre label e input */
+  user-select: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.search-container input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 19px;
+  width: 100%; /* ocupa todo el espacio restante */
+  font-weight: bold;
+  color: #004d4d;
+  text-align: left;
+  padding: 6px 0;
+}
+
+.search-container input::placeholder {
+  color: #007d7d;
+}
+
+
+    /* Sugerencias */
+    #suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      z-index: 200;
+      display: none;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    /* Contenedor principal */
+    main {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+      color: #004d4d;
+      background-color: #fdfefd;
+    }
+
+    /* Títulos */
+    .trending {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #004d4d;
+      text-align: center;
+    }
+
+    .descripciones {
+      font-size: 1em;
+      color: #000000;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    /* Catálogo */
+    .producto-catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding-bottom: 400px;
+    }
+
+    .producto {
+      background-color: rgba(206, 236, 234, 0.817);
+      border-radius: 20px;
+      text-align: center;
+      padding-top: 400px;
+      padding: 20px;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #004d4d;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .producto img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .nombre {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin: 10px 0 8px 0;
+      flex-grow: 1;
+    }
+
+    .vistazo {
+      background-color: white;
+      border: 2px solid #a0e7e5;
+      border-radius: 15px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      font-weight: bold;
+      color: #004d4d;
+    }
+    .vistazo:hover {
+      background-color: #40c9c6;
+      border-color: #40c9c6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo fijo -->
+  <div class="fondo-arriba">
+    <!-- Barra de búsqueda centrada encima del fondo -->
+    <div class="search-container">
+      <label for="buscador">Buscar:</label>
+      <input type="text" id="buscador" placeholder="Buscar enfermedad..." autocomplete="off" />
+      <ul id="suggestions"></ul>
+    </div>
+  </div>
+
+  <a href="primeros_auxilios.html" class="btn-primeros-auxilios">Guía de primeros auxilios</a>
+
+  <nav class="navbar">
+    <div class="left">
+      <img src="img/cuidate+ logo.png" alt="Logo cuidat+" />
+    </div>
+    <!-- No se incluye barra de búsqueda aquí para evitar duplicados -->
+  </nav>
+
+  <main>
+    <div class="trending">ENFERMEDADES</div>
+    <section class="producto-catalogo" id="catalogo">
+      <div class="producto" data-nombre="Migraña">
+        <img src="img/enfermedades/migraña.png" alt="Migraña" />
+        <p class="nombre">Migraña</p>
+        <button class="vistazo" onclick="window.location.href='migraña.html'">Saber más...</button>
+      </div>
+
+      <div class="producto" data-nombre="Gastritis">
+        <img src="img/enfermedades/gastritis.png" alt="Gastritis" />
+        <p class="nombre">Gastritis</p>
+        <button class="vistazo" onclick="window.location.href='gastritis.html'">Saber más...</button>
+      </div>
+
+      <div class="producto" data-nombre="Hipertiroidismo">
+        <img src="img/enfermedades/hipertiroidismo.png" alt="Hipertiroidismo" />
+        <p class="nombre">Hipertiroidismo</p>
+        <button class="vistazo" onclick="window.location.href='hipertiroidismo.html'">Saber más...</button>
+      </div>
+
+      <div class="producto" data-nombre="Asma">
+        <img src="img/enfermedades/asma.png" alt="Asma" />
+        <p class="nombre">Asma</p>
+        <button class="vistazo" onclick="window.location.href='asma.html'">Saber más...</button>
+      </div>
+
+      <div class="producto" data-nombre="Anemia">
+  <img src="img/enfermedades/anemia.png" alt="Anemia" />
+  <p class="nombre">Anemia</p>
+  <button class="vistazo" onclick="window.location.href='anemia.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Diabetes">
+  <img src="img/enfermedades/diabetes.png" alt="Diabetes" />
+  <p class="nombre">Diabetes</p>
+  <button class="vistazo" onclick="window.location.href='diabetes.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Apendicitis">
+  <img src="img/enfermedades/apendicitis.png" alt="Apendicitis" />
+  <p class="nombre">Apendicitis</p>
+  <button class="vistazo" onclick="window.location.href='apendicitis.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Resfriado común">
+  <img src="img/enfermedades/resfriado.png" alt="Resfriado común" />
+  <p class="nombre">Resfriado común</p>
+  <button class="vistazo" onclick="window.location.href='resfriado.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Gripe">
+  <img src="img/enfermedades/gripe.png" alt="Gripe" />
+  <p class="nombre">Gripe (influenza)</p>
+  <button class="vistazo" onclick="window.location.href='gripe.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Neumonia">
+  <img src="img/enfermedades/neumonia.png" alt="Neumonia" />
+  <p class="nombre">Neumonia</p>
+  <button class="vistazo" onclick="window.location.href='neumonia.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Hipertensión arterial">
+  <img src="img/enfermedades/hipertension.png" alt="Hipertensión arterial" />
+  <p class="nombre">Hipertensión arterial</p>
+  <button class="vistazo" onclick="window.location.href='hipertension.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Enfermedad diarreica aguda">
+  <img src="img/enfermedades/diarrea.png" alt="Enfermedad diarreica aguda" />
+  <p class="nombre">Enfermedad diarreica aguda</p>
+  <button class="vistazo" onclick="window.location.href='diarrea.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Bronquitis">
+  <img src="img/enfermedades/bronquitis.png" alt="Bronquitis" />
+  <p class="nombre">Bronquitis</p>
+  <button class="vistazo" onclick="window.location.href='bronquitis.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Infecciones urinarias">
+  <img src="img/enfermedades/infeccion urinaria.png" alt="Infecciones urinarias" />
+  <p class="nombre">Infecciones urinarias</p>
+  <button class="vistazo" onclick="window.location.href='infeccion-urinaria.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Obesidad">
+  <img src="img/enfermedades/obesidad.png" alt="Obesidad" />
+  <p class="nombre">Obesidad</p>
+  <button class="vistazo" onclick="window.location.href='obesidad.html'">Saber más...</button>
+</div>
+
+<div class="producto" data-nombre="Artritis">
+  <img src="img/enfermedades/artritis.png" alt="Artritis" />
+  <p class="nombre">Artritis</p>
+  <button class="vistazo" onclick="window.location.href='artritis.html'">Saber más...</button>
+</div>
+
+    </section>
+  </main>
+
+  <script>
+    const inputNombre = document.getElementById('buscador');
+    const suggestions = document.getElementById('suggestions');
+    const productos = document.querySelectorAll('.producto');
+
+    // Array con nombres de enfermedades
+    const nombresEnfermedades = Array.from(productos).map(p => p.getAttribute('data-nombre'));
+
+    inputNombre.addEventListener('input', () => {
+      const valor = inputNombre.value.toLowerCase().trim();
+      suggestions.innerHTML = '';
+
+      if (valor === '') {
+        suggestions.style.display = 'none';
+        return;
+      }
+
+      const filtrados = nombresEnfermedades.filter(nombre =>
+        nombre.toLowerCase().includes(valor)
+      );
+
+      if (filtrados.length === 0) {
+        suggestions.style.display = 'none';
+        return;
+      }
+
+      filtrados.forEach(nombre => {
+        const li = document.createElement('li');
+        li.textContent = nombre;
+        li.style.padding = '6px 10px';
+        li.style.cursor = 'pointer';
+        li.addEventListener('mouseenter', () => li.style.backgroundColor = '#eee');
+        li.addEventListener('mouseleave', () => li.style.backgroundColor = 'white');
+        li.addEventListener('click', () => {
+          inputNombre.value = nombre;
+          suggestions.style.display = 'none';
+
+          // Scroll al producto
+          const producto = Array.from(productos).find(p => p.getAttribute('data-nombre') === nombre);
+          if (producto) {
+            producto.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            producto.style.transition = 'background-color 0.5s';
+            producto.style.backgroundColor = '#ffff99';
+            setTimeout(() => {
+              producto.style.backgroundColor = '';
+            }, 1500);
+          }
+        });
+        suggestions.appendChild(li);
+      });
+
+      suggestions.style.display = 'block';
+    });
+
+    // Ocultar sugerencias al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!inputNombre.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.style.display = 'none';
+      }
+    });
+  </script>
+<!-- Iframe code -->
+<iframe
+  id="iframeId"
+  src="https://www.stack-ai.com/embed/06354467-5cdb-4c07-a9e7-c631662ed8f5/5083196c-b5d7-4110-bd4a-fa50e90e2b02/6887edf67b3fd2ada170608d"
+  width="350"
+  height="600"
+  frameborder="0"
+  style="position: fixed; z-index: 1; bottom: 15px; right: 15px; max-width: calc(100vw - 15px); max-height: calc(100vh - 15px);"
+></iframe>
+
+<!-- Script for handling the resizing -->
+<script>
+  function handleMessage(event) {
+    if (event.data.type === 'chatbotStateChange') {
+      const iframe = document.getElementById('iframeId')
+      if (iframe) {
+        if (event.data.isClosed) {
+          iframe.style.width = '60px'
+          iframe.style.height = '60px'
+        } else {
+          iframe.style.width = '350px'
+          iframe.style.height = '600px'
+        }
+      }
+    }
+  }
+
+  // Attach event listener
+  window.addEventListener('message', handleMessage)
+
+  // If you want to clean up the event listener when the page unloads (optional)
+  window.addEventListener('beforeunload', function () {
+    window.removeEventListener('message', handleMessage)
+  })
+</script>
+</body>
+</html>

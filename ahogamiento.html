@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ahogamiento - Primeros Auxilios</title>
+<style>
+  :root{
+    --teal:#008080;
+    --teal-dark:#004d4d;
+    --bg:#e0f7f7;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('img/cuidate+\ fondos\ enfermedades.png') no-repeat center center fixed;
+    background-size: cover;
+    color:#222;
+  }
+  .barra-superior {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background-color: rgba(0, 77, 77, 0);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+  }
+  .barra-superior img { width: 200px; padding-top: 50px;}
+  .volver-btn {
+    background-color: #fff; color: var(--teal-dark);
+    padding: 10px 20px; border-radius: 20px; border: none;
+    font-weight: bold; cursor: pointer; transition: 0.25s;
+  }
+  .volver-btn:hover { background-color: var(--teal-dark); color: #fff; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+  }
+  .indice-wrap {
+    position: sticky;
+    top: 86px;
+    align-self: start;
+    height: calc(100vh - 100px);
+    overflow: auto;
+  }
+  .indice {
+    background: var(--bg);
+    border: 1px solid #cfe9e9;
+    border-radius: 12px;
+    padding: 16px 14px;
+  }
+  .indice h3 {
+    margin: 0 0 10px 0;
+    color: var(--teal);
+    font-size: 18px;
+  }
+  .indice a {
+    display: block;
+    color: var(--teal-dark);
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .indice a:hover { background: #d3f0f0; text-decoration: underline; }
+
+  .contenido {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    padding: 28px;
+  }
+  h1 { color: var(--teal); margin-top: 0; }
+  h2, h3 { color: var(--teal); margin-top: 28px; }
+  p, ul, ol, table { font-size: 18px; line-height: 1.65; }
+  ul, ol { padding-left: 22px; }
+  .seccion + .seccion { margin-top: 20px; }
+
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 12px 0 24px;
+  }
+  .galeria .placeholder {
+    border: 2px dashed #aacccc;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: #5a7e7e;
+    font-size: 16px;
+    background: #f6fcfc;
+  }
+  .galeria img {
+    width: 100%; border-radius: 10px; display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+  th { background: var(--teal); color: #fff; }
+
+  .callout {
+    background: #f0fbfb;
+    border-left: 6px solid var(--teal);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+  }
+  .advertencia {
+    margin-top: 24px;
+    padding: 18px;
+    background-color: #ffe0e0;
+    color: #8b0000;
+    border-left: 6px solid #ff5e5e;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 1fr; }
+    .indice-wrap { position: static; height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+  <img src="img/cuidate+ logo.png" alt="Logo CUIDAT+" />
+  <a class="volver-btn" href="index.html">Inicio</a>
+</div>
+
+<div class="layout">
+  <aside class="indice-wrap">
+    <nav class="indice">
+      <h3>Índice</h3>
+      <a href="#descripcion">Descripción y fisiopatología</a>
+      <a href="#epidemiologia">Epidemiología</a>
+      <a href="#sintomas">Síntomas</a>
+      <a href="#causas">Causas</a>
+      <a href="#diagnostico">Diagnóstico rápido</a>
+      <a href="#tratamiento">Primeros auxilios</a>
+      <a href="#prevencion">Prevención</a>
+      <a href="#complicaciones">Complicaciones</a>
+      <a href="#urgencias">Cuándo acudir a urgencias</a>
+      <a href="#galeria">Galería de imágenes</a>
+      <a href="#nota">Nota importante</a>
+    </nav>
+  </aside>
+
+  <main class="contenido">
+    <h1>Primeros Auxilios: Ahogamiento</h1>
+
+    <section id="descripcion" class="seccion">
+      <h2>Descripción y fisiopatología</h2>
+      <p>El ahogamiento es una emergencia médica causada por la inhalación de líquido que impide la correcta oxigenación de los pulmones. Esto puede provocar hipoxia (falta de oxígeno) y daño cerebral en pocos minutos.</p>
+      <div class="callout">
+        <strong>Fisiopatología resumida:</strong> entrada de agua en vías respiratorias → obstrucción y reflejo de cierre de glotis → hipoxia → pérdida de conciencia → paro cardiorrespiratorio.
+      </div>
+    </section>
+
+    <section id="epidemiologia" class="seccion">
+      <h2>Epidemiología</h2>
+      <ul>
+        <li>Una de las principales causas de muerte accidental en niños y adolescentes.</li>
+        <li>Ocurre con mayor frecuencia en ríos, lagos, playas y piscinas.</li>
+        <li>Mayor riesgo en personas que no saben nadar o que practican deportes acuáticos sin medidas de seguridad.</li>
+      </ul>
+    </section>
+
+    <section id="sintomas" class="seccion">
+      <h2>Síntomas</h2>
+      <ul>
+        <li>Dificultad para respirar o incapacidad de hablar.</li>
+        <li>Movimientos descoordinados o hundimiento repetido.</li>
+        <li>Tos intensa o vómito tras salir del agua.</li>
+        <li>Labios y piel azulados (cianosis).</li>
+        <li>Pérdida de conocimiento.</li>
+        <li>Ausencia de pulso o respiración.</li>
+      </ul>
+    </section>
+
+    <section id="causas" class="seccion">
+      <h2>Causas</h2>
+      <ul>
+        <li>Caídas accidentales en el agua.</li>
+        <li>No saber nadar o nadar en zonas peligrosas.</li>
+        <li>Fatiga o calambres musculares durante la natación.</li>
+        <li>Consumo de alcohol o drogas antes de actividades acuáticas.</li>
+        <li>Corrientes fuertes o condiciones climáticas adversas.</li>
+      </ul>
+    </section>
+
+    <section id="diagnostico" class="seccion">
+      <h2>Diagnóstico rápido</h2>
+      <ul>
+        <li>Comprobar si la persona responde a estímulos.</li>
+        <li>Verificar si respira observando el pecho.</li>
+        <li>Palpar pulso carotídeo.</li>
+        <li>Buscar signos de hipoxia como coloración azulada.</li>
+      </ul>
+    </section>
+
+    <section id="tratamiento" class="seccion">
+      <h2>Primeros auxilios</h2>
+      <ul>
+        <li>Llamar inmediatamente a los servicios de emergencia.</li>
+        <li>Si es seguro, sacar a la persona del agua sin poner en riesgo la propia seguridad.</li>
+        <li>Colocar a la persona boca arriba sobre una superficie firme.</li>
+        <li>Si no respira, iniciar RCP (30 compresiones por 2 ventilaciones) hasta que llegue ayuda.</li>
+        <li>Si respira pero está inconsciente, colocar en posición lateral de seguridad.</li>
+        <li>Mantener a la persona abrigada para evitar hipotermia.</li>
+      </ul>
+    </section>
+
+    <section id="prevencion" class="seccion">
+      <h2>Prevención</h2>
+      <ul>
+        <li>Aprender y enseñar técnicas de natación desde la infancia.</li>
+        <li>Usar chalecos salvavidas en actividades acuáticas.</li>
+        <li>Evitar nadar en solitario o en condiciones peligrosas.</li>
+        <li>No consumir alcohol antes de entrar al agua.</li>
+        <li>Vigilar siempre a niños cerca del agua.</li>
+      </ul>
+    </section>
+
+    <section id="complicaciones" class="seccion">
+      <h2>Complicaciones</h2>
+      <ul>
+        <li>Daño cerebral por falta de oxígeno.</li>
+        <li>Neumonía por aspiración de agua.</li>
+        <li>Paro cardiorrespiratorio.</li>
+        <li>Hipotermia.</li>
+      </ul>
+    </section>
+
+    <section id="urgencias" class="seccion">
+      <h2>Cuándo acudir a urgencias</h2>
+      <ul>
+        <li>Siempre que haya habido un episodio de ahogamiento, aunque la persona parezca recuperada.</li>
+        <li>Falta de respiración o pulso.</li>
+        <li>Confusión, debilidad o somnolencia tras salir del agua.</li>
+        <li>Dificultad para respirar o tos persistente.</li>
+      </ul>
+    </section>
+
+    <div id="lightbox" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+      <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.5); cursor:pointer;">
+    </div>
+
+    <section id="nota" class="seccion">
+      <div class="advertencia">
+        Esta información es educativa y no sustituye la atención médica profesional. Ante un ahogamiento, busca ayuda de emergencia de inmediato.
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.galeria img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    });
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
+

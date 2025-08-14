@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asma - Buscador Médico</title>
+<style>
+  :root{
+    --teal:#008080;
+    --teal-dark:#004d4d;
+    --bg:#e0f7f7;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('img/cuidate+\ fondos\ enfermedades.png') no-repeat center center fixed;
+    background-size: cover;
+    color:#222;
+  }
+  /* Barra superior */
+  .barra-superior {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background-color: rgba(0, 77, 77, 0);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+  }
+  .barra-superior img { width: 200px;  padding-top: 50px;}
+  .volver-btn {
+    background-color: #fff; color: var(--teal-dark);
+    padding: 10px 20px; border-radius: 20px; border: none;
+   
+    font-weight: bold; cursor: pointer; transition: 0.25s;
+  }
+  .volver-btn:hover { background-color: var(--teal-dark); color: #fff; }
+
+  /* Layout con índice fijo */
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 100px 20px 60px; /* deja espacio para la barra */
+  }
+  /* Índice fijo (sidebar) */
+  .indice-wrap {
+    position: sticky;
+    top: 86px; /* debajo de la barra superior */
+    align-self: start;
+    height: calc(100vh - 100px);
+    overflow: auto;
+  }
+  .indice {
+    background: var(--bg);
+    border: 1px solid #cfe9e9;
+    border-radius: 12px;
+    padding: 16px 14px;
+  }
+  .indice h3 {
+    margin: 0 0 10px 0;
+    color: var(--teal);
+    font-size: 18px;
+  }
+  .indice a {
+    display: block;
+    color: var(--teal-dark);
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .indice a:hover { background: #d3f0f0; text-decoration: underline; }
+
+  /* Contenido */
+  .contenido {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    padding: 28px;
+  }
+  h1 { color: var(--teal); margin-top: 0; }
+  h2, h3 { color: var(--teal); margin-top: 28px; }
+  p, ul, ol, table { font-size: 18px; line-height: 1.65; }
+  ul, ol { padding-left: 22px; }
+  .seccion + .seccion { margin-top: 20px; }
+
+  /* Galería */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 12px 0 24px;
+  }
+  .galeria .placeholder {
+    border: 2px dashed #aacccc;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: #5a7e7e;
+    font-size: 16px;
+    background: #f6fcfc;
+  }
+  .galeria img {
+    width: 100%; border-radius: 10px; display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  /* Tablas */
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+  th { background: var(--teal); color: #fff; }
+
+  /* Cajas de info */
+  .callout {
+    background: #f0fbfb;
+    border-left: 6px solid var(--teal);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+  }
+  .advertencia {
+    margin-top: 24px;
+    padding: 18px;
+    background-color: #ffe0e0;
+    color: #8b0000;
+    border-left: 6px solid #ff5e5e;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 1fr; }
+    .indice-wrap { position: static; height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+  <img src="img/cuidate+ logo.png" alt="Logo CUIDAT+" />
+  <a class="volver-btn" href="index.html">Inicio</a>
+</div>
+
+<div class="layout">
+  <aside class="indice-wrap">
+    <nav class="indice">
+      <h3>Índice</h3>
+      <a href="#descripcion">Descripción y fisiopatología</a>
+      <a href="#epidemiologia">Epidemiología</a>
+      <a href="#sintomas">Síntomas</a>
+      <a href="#causas">Causas</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#tratamiento">Tratamiento</a>
+      <a href="#prevencion">Prevención y autocuidado</a>
+      <a href="#complicaciones">Complicaciones</a>
+      <a href="#urgencias">Cuándo acudir a urgencias</a>
+      <a href="#galeria">Galería de imágenes</a>
+      <a href="#nota">Nota importante</a>
+    </nav>
+  </aside>
+
+  <main class="contenido">
+    <h1>Asma</h1>
+
+    <section id="descripcion" class="seccion">
+      <h2>Descripción y fisiopatología</h2>
+      <p>El asma es una enfermedad crónica de las vías respiratorias caracterizada por inflamación y estrechamiento reversible de los bronquios, lo que dificulta el paso del aire. Esta alteración provoca episodios recurrentes de dificultad respiratoria.</p>
+      <div class="callout">
+        <strong>Fisiopatología resumida:</strong> inflamación crónica de las vías respiratorias → hiperreactividad bronquial → obstrucción reversible del flujo de aire.
+      </div>
+    </section>
+
+    <section id="epidemiologia" class="seccion">
+      <h2>Epidemiología</h2>
+      <ul>
+        <li>Afecta a personas de todas las edades, aunque suele comenzar en la infancia.</li>
+        <li>Es más común en personas con antecedentes familiares de asma o alergias.</li>
+        <li>La prevalencia varía según el país y factores ambientales.</li>
+      </ul>
+    </section>
+
+    <section id="sintomas" class="seccion">
+      <h2>Síntomas</h2>
+      <ul>
+        <li>Dificultad para respirar (disnea).</li>
+        <li>Silbidos o pitidos al respirar (sibilancias).</li>
+        <li>Tos persistente, especialmente por la noche o en la madrugada.</li>
+        <li>Opresión en el pecho.</li>
+        <li>Fatiga durante actividades físicas.</li>
+        <li>Episodios que empeoran con el ejercicio, exposición a alérgenos o cambios de clima.</li>
+      </ul>
+    </section>
+
+    <section id="causas" class="seccion">
+      <h2>Causas</h2>
+      <ul>
+        <li>Factores genéticos y predisposición a alergias.</li>
+        <li>Exposición a alérgenos (polen, ácaros, moho, pelo de animales).</li>
+        <li>Contaminación ambiental y humo de tabaco.</li>
+        <li>Infecciones respiratorias en la infancia.</li>
+        <li>Ejercicio físico intenso en personas susceptibles.</li>
+      </ul>
+    </section>
+
+    <section id="diagnostico" class="seccion">
+      <h2>Diagnóstico</h2>
+      <ul>
+        <li>Historia clínica y examen físico.</li>
+        <li>Espirometría para evaluar la función pulmonar.</li>
+        <li>Pruebas de alergia para identificar desencadenantes.</li>
+        <li>Pruebas de provocación bronquial en casos específicos.</li>
+      </ul>
+    </section>
+
+    <section id="tratamiento" class="seccion">
+      <h2>Tratamiento</h2>
+      <ul>
+        <li>Medicamentos controladores (corticoides inhalados) para reducir la inflamación.</li>
+        <li>Broncodilatadores de acción corta para aliviar los síntomas durante las crisis.</li>
+        <li>Evitar desencadenantes conocidos.</li>
+        <li>Educación del paciente sobre el uso correcto de inhaladores.</li>
+      </ul>
+    </section>
+
+    <section id="prevencion" class="seccion">
+      <h2>Prevención y autocuidado</h2>
+      <ul>
+        <li>Evitar exposición a alérgenos y contaminantes.</li>
+        <li>Controlar las alergias estacionales con medicación preventiva.</li>
+        <li>Realizar revisiones médicas periódicas.</li>
+        <li>Mantener un peso saludable y practicar ejercicio controlado.</li>
+      </ul>
+    </section>
+
+    <section id="complicaciones" class="seccion">
+      <h2>Complicaciones</h2>
+      <ul>
+        <li>Asma grave persistente que limita las actividades diarias.</li>
+        <li>Crisis asmática severa (estatus asmático).</li>
+        <li>Daño permanente en las vías respiratorias.</li>
+        <li>Hospitalizaciones recurrentes.</li>
+      </ul>
+    </section>
+
+    <section id="urgencias" class="seccion">
+      <h2>Cuándo acudir a urgencias</h2>
+      <ul>
+        <li>Dificultad grave para respirar o hablar.</li>
+        <li>Labios o uñas azuladas (cianosis).</li>
+        <li>Uso excesivo de músculos del cuello o pecho para respirar.</li>
+        <li>Falta de respuesta a broncodilatadores de rescate.</li>
+      </ul>
+    </section>
+
+    <div id="lightbox" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+      <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.5); cursor:pointer;">
+    </div>
+
+    <section id="nota" class="seccion">
+      <div class="advertencia">
+        Esta información es educativa y no sustituye la atención médica profesional. Consulta a tu médico para diagnóstico y tratamiento adecuados.
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.galeria img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    });
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
+

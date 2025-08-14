@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Asma - Buscador Médico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7f9;
+      margin: 0;
+      padding-top: 90px;
+      color: #004d4d;
+    }
+    .barra-superior {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background-color: #40c9c6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .barra-superior img {
+      height: 50px;
+    }
+    .barra-superior h1 {
+      margin: 0;
+      margin-left: 10px;
+      font-size: 24px;
+      color: white;
+    }
+    .volver-btn {
+      background-color: white;
+      color: #004d4d;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .volver-btn:hover {
+      background-color: #004d4d;
+      color: white;
+    }
+
+    .contenedor {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      gap: 30px;
+    }
+    .texto {
+      flex: 2;
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .galeria {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #008080;
+      border-bottom: 2px solid #40c9c6;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+    ul {
+      line-height: 1.6;
+      margin-left: 20px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .advertencia {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #ffe0e0;
+      color: #8b0000;
+      border-left: 6px solid #ff5e5e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-superior">
+    <div style="display: flex; align-items: center;">
+      <img src="../img/cuidate+ logo.png" alt="Logo" />
+      <h1>CUIDAT +</h1>
+    </div>
+    <button class="volver-btn" onclick="window.location.href='../index.html'">Volver a la página principal</button>
+  </div>
+
+  <div class="contenedor">
+    <div class="texto">
+      <h2>Descripción de la enfermedad</h2>
+      <p>El asma es una enfermedad crónica de los pulmones. Hace que las vías respiratorias se inflamen y se vuelvan más estrechas, lo que dificulta la respiración. Las personas con asma pueden tener ataques donde les cuesta mucho trabajo respirar, sienten presión en el pecho y pueden toser o hacer ruidos al respirar.</p>
+
+      <h2>Causas</h2>
+      <ul>
+        <li>Alergias (al polvo, polen, moho, pelo de animales)</li>
+        <li>Infecciones respiratorias</li>
+        <li>Ejercicio físico intenso</li>
+        <li>Contaminación del aire y humo de cigarro</li>
+        <li>Estrés y emociones fuertes</li>
+        <li>Cambios bruscos de clima</li>
+      </ul>
+
+      <h2>Fases y complicaciones</h2>
+      <p>El asma tiene fases. A veces no hay síntomas, pero en otras ocasiones puede haber crisis o ataques asmáticos, que son momentos en los que se respira con mucha dificultad. Si no se controla, el asma puede empeorar con el tiempo y causar daño pulmonar o incluso ser peligroso si no se atiende a tiempo.</p>
+
+      <h2>Tratamiento</h2>
+      <ul>
+        <li>Inhaladores de alivio rápido (como salbutamol) para cuando hay crisis</li>
+        <li>Inhaladores de mantenimiento (como budesonida) que se usan todos los días</li>
+        <li>Evitar los factores que causan alergias</li>
+        <li>Vacunas y seguimiento con un médico neumólogo</li>
+      </ul>
+
+      <h2>Medicamentos sugeridos</h2>
+      <ul>
+        <li><strong>Broncodilatadores:</strong> salbutamol, terbutalina</li>
+        <li><strong>Antiinflamatorios:</strong> budesonida, fluticasona</li>
+        <li><strong>Combinados:</strong> salmeterol + fluticasona (Seretide), formoterol + budesonida (Symbicort)</li>
+        <li><strong>Antialérgicos:</strong> montelukast</li>
+      </ul>
+
+      <h2>Consejos para controlar el asma</h2>
+      <ul>
+        <li>Evitar humo de cigarro, polvo y animales si causan alergia</li>
+        <li>Hacer ejercicio suave y siempre con supervisión médica</li>
+        <li>Tomar los medicamentos como los receta el doctor, incluso si te sientes bien</li>
+        <li>Siempre llevar tu inhalador contigo</li>
+        <li>Acudir a revisiones médicas frecuentes</li>
+      </ul>
+
+      <div class="advertencia">
+        Esta información es educativa. No te automediques. Siempre consulta a un médico ante cualquier síntoma o dificultad para respirar.
+      </div>
+    </div>
+
+    <div class="galeria">
+      <img src="asma1.jpg" alt="Pulmones y vías respiratorias inflamadas">
+      <img src="asma2.jpg" alt="Niño usando inhalador">
+      <img src="asma3.jpg" alt="Inhaladores para el asma">
+    </div>
+  </div>
+</body>
+</html>

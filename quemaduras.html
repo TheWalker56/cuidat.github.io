@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quemaduras - Primeros Auxilios</title>
+<style>
+  :root{
+    --teal:#008080;
+    --teal-dark:#004d4d;
+    --bg:#e0f7f7;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('img/cuidate+\ fondos\ enfermedades.png') no-repeat center center fixed;
+    background-size: cover;
+    color:#222;
+  }
+  .barra-superior {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background-color: rgba(0, 77, 77, 0);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+  }
+  .barra-superior img { width: 200px; padding-top: 50px;}
+  .volver-btn {
+    background-color: #fff; color: var(--teal-dark);
+    padding: 10px 20px; border-radius: 20px; border: none;
+    font-weight: bold; cursor: pointer; transition: 0.25s;
+  }
+  .volver-btn:hover { background-color: var(--teal-dark); color: #fff; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+  }
+  .indice-wrap {
+    position: sticky;
+    top: 86px;
+    align-self: start;
+    height: calc(100vh - 100px);
+    overflow: auto;
+  }
+  .indice {
+    background: var(--bg);
+    border: 1px solid #cfe9e9;
+    border-radius: 12px;
+    padding: 16px 14px;
+  }
+  .indice h3 {
+    margin: 0 0 10px 0;
+    color: var(--teal);
+    font-size: 18px;
+  }
+  .indice a {
+    display: block;
+    color: var(--teal-dark);
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .indice a:hover { background: #d3f0f0; text-decoration: underline; }
+
+  .contenido {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    padding: 28px;
+  }
+  h1 { color: var(--teal); margin-top: 0; }
+  h2, h3 { color: var(--teal); margin-top: 28px; }
+  p, ul, ol, table { font-size: 18px; line-height: 1.65; }
+  ul, ol { padding-left: 22px; }
+  .seccion + .seccion { margin-top: 20px; }
+
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 12px 0 24px;
+  }
+  .galeria .placeholder {
+    border: 2px dashed #aacccc;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: #5a7e7e;
+    font-size: 16px;
+    background: #f6fcfc;
+  }
+  .galeria img {
+    width: 100%; border-radius: 10px; display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+  th { background: var(--teal); color: #fff; }
+
+  .callout {
+    background: #f0fbfb;
+    border-left: 6px solid var(--teal);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+  }
+  .advertencia {
+    margin-top: 24px;
+    padding: 18px;
+    background-color: #ffe0e0;
+    color: #8b0000;
+    border-left: 6px solid #ff5e5e;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 1fr; }
+    .indice-wrap { position: static; height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+  <img src="img/cuidate+ logo.png" alt="Logo CUIDAT+" />
+  <a class="volver-btn" href="index.html">Inicio</a>
+</div>
+
+<div class="layout">
+  <aside class="indice-wrap">
+    <nav class="indice">
+      <h3>Índice</h3>
+      <a href="#descripcion">Descripción y fisiopatología</a>
+      <a href="#epidemiologia">Epidemiología</a>
+      <a href="#sintomas">Síntomas según grado</a>
+      <a href="#causas">Causas</a>
+      <a href="#diagnostico">Diagnóstico rápido</a>
+      <a href="#tratamiento">Primeros auxilios</a>
+      <a href="#prevencion">Prevención</a>
+      <a href="#complicaciones">Complicaciones</a>
+      <a href="#urgencias">Cuándo acudir a urgencias</a>
+      <a href="#galeria">Galería de imágenes</a>
+      <a href="#nota">Nota importante</a>
+    </nav>
+  </aside>
+
+  <main class="contenido">
+    <h1>Primeros Auxilios: Quemaduras</h1>
+
+    <section id="descripcion" class="seccion">
+      <h2>Descripción y fisiopatología</h2>
+      <p>Las quemaduras son lesiones de la piel y tejidos subyacentes causadas por calor, electricidad, productos químicos, radiación o fricción. Pueden variar en gravedad desde daño superficial hasta destrucción profunda de tejidos.</p>
+      <div class="callout">
+        <strong>Fisiopatología resumida:</strong> exposición a agente térmico/químico/elétrico → daño celular y tisular → respuesta inflamatoria → posible pérdida de líquidos y riesgo de infección.
+      </div>
+    </section>
+
+    <section id="epidemiologia" class="seccion">
+      <h2>Epidemiología</h2>
+      <ul>
+        <li>Comunes en el hogar, especialmente en cocina y baño.</li>
+        <li>Frecuentes en niños pequeños y trabajadores de industrias de riesgo.</li>
+        <li>Las quemaduras graves son una causa importante de hospitalización y secuelas.</li>
+      </ul>
+    </section>
+
+    <section id="sintomas" class="seccion">
+      <h2>Síntomas según grado</h2>
+      <ul>
+        <li><strong>Primer grado:</strong> enrojecimiento, dolor, piel intacta (similar a una quemadura solar).</li>
+        <li><strong>Segundo grado:</strong> ampollas, enrojecimiento intenso, dolor intenso y humedad.</li>
+        <li><strong>Tercer grado:</strong> piel blanquecina o carbonizada, pérdida de sensibilidad, daño profundo.</li>
+      </ul>
+    </section>
+
+    <section id="causas" class="seccion">
+      <h2>Causas</h2>
+      <ul>
+        <li>Contacto con fuego o líquidos calientes.</li>
+        <li>Exposición a vapor o superficies calientes.</li>
+        <li>Corriente eléctrica.</li>
+        <li>Productos químicos corrosivos.</li>
+        <li>Radiación (solar, rayos X).</li>
+        <li>Fricción intensa.</li>
+      </ul>
+    </section>
+
+    <section id="diagnostico" class="seccion">
+      <h2>Diagnóstico rápido</h2>
+      <ul>
+        <li>Evaluar extensión y profundidad de la quemadura.</li>
+        <li>Determinar causa (térmica, química, eléctrica).</li>
+        <li>Observar signos de compromiso respiratorio en quemaduras faciales.</li>
+        <li>Valorar dolor, color y sensibilidad de la zona.</li>
+      </ul>
+    </section>
+
+    <section id="tratamiento" class="seccion">
+      <h2>Primeros auxilios</h2>
+      <ul>
+        <li>Asegurar que la persona esté fuera de la fuente de calor.</li>
+        <li>Enfriar la quemadura con agua corriente fría (10-20 minutos) sin hielo.</li>
+        <li>No aplicar mantequilla, pasta dental ni remedios caseros.</li>
+        <li>Cubrir con gasa estéril o paño limpio, sin presionar.</li>
+        <li>No romper ampollas.</li>
+        <li>En quemaduras químicas, enjuagar con abundante agua por al menos 20 minutos.</li>
+        <li>En quemaduras eléctricas, desconectar la fuente antes de tocar a la víctima.</li>
+      </ul>
+    </section>
+
+    <section id="prevencion" class="seccion">
+      <h2>Prevención</h2>
+      <ul>
+        <li>Mantener líquidos y alimentos calientes fuera del alcance de niños.</li>
+        <li>Usar guantes y equipo de protección en trabajos de riesgo.</li>
+        <li>No manipular productos químicos sin protección adecuada.</li>
+        <li>Evitar exposición prolongada al sol sin protección solar.</li>
+      </ul>
+    </section>
+
+    <section id="complicaciones" class="seccion">
+      <h2>Complicaciones</h2>
+      <ul>
+        <li>Infecciones de la herida.</li>
+        <li>Pérdida de líquidos y choque hipovolémico.</li>
+        <li>Cicatrices y retracciones de piel.</li>
+        <li>Daño funcional en músculos o articulaciones.</li>
+        <li>Lesiones en vías respiratorias por inhalación de humo.</li>
+      </ul>
+    </section>
+
+    <section id="urgencias" class="seccion">
+      <h2>Cuándo acudir a urgencias</h2>
+      <ul>
+        <li>Quemaduras de segundo o tercer grado extensas.</li>
+        <li>Quemaduras en cara, manos, pies, genitales o articulaciones.</li>
+        <li>Signos de dificultad respiratoria tras inhalar humo.</li>
+        <li>Quemaduras eléctricas o químicas graves.</li>
+        <li>Dolor intenso o signos de infección (pus, fiebre).</li>
+      </ul>
+    </section>
+
+    <div id="lightbox" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+      <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.5); cursor:pointer;">
+    </div>
+
+    <section id="nota" class="seccion">
+      <div class="advertencia">
+        Esta información es educativa y no sustituye la atención médica profesional. Ante una quemadura grave, busca atención médica inmediata.
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.galeria img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    });
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
+
+
