@@ -4,141 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hipertiroidismo - Buscador Médico</title>
-<style>
-  :root{
-    --teal:#008080;
-    --teal-dark:#004d4d;
-    --bg:#e0f7f7;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url('img/cuidate+\ fondos\ enfermedades.png') no-repeat center center fixed;
-    background-size: cover;
-    color:#222;
-  }
-  /* Barra superior */
-  .barra-superior {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 70px;
-    background-color: rgba(0, 77, 77, 0);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
-  }
-  .barra-superior img { width: 200px;  padding-top: 50px;}
-  .volver-btn {
-    background-color: #fff; color: var(--teal-dark);
-    padding: 10px 20px; border-radius: 20px; border: none;
-   
-    font-weight: bold; cursor: pointer; transition: 0.25s;
-  }
-  .volver-btn:hover { background-color: var(--teal-dark); color: #fff; }
-
-  /* Layout con índice fijo */
-  .layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 24px;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 100px 20px 60px; /* deja espacio para la barra */
-  }
-  /* Índice fijo (sidebar) */
-  .indice-wrap {
-    position: sticky;
-    top: 86px; /* debajo de la barra superior */
-    align-self: start;
-    height: calc(100vh - 100px);
-    overflow: auto;
-  }
-  .indice {
-    background: var(--bg);
-    border: 1px solid #cfe9e9;
-    border-radius: 12px;
-    padding: 16px 14px;
-  }
-  .indice h3 {
-    margin: 0 0 10px 0;
-    color: var(--teal);
-    font-size: 18px;
-  }
-  .indice a {
-    display: block;
-    color: var(--teal-dark);
-    text-decoration: none;
-    padding: 6px 8px;
-    border-radius: 8px;
-    font-size: 15px;
-  }
-  .indice a:hover { background: #d3f0f0; text-decoration: underline; }
-
-  /* Contenido */
-  .contenido {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    padding: 28px;
-  }
-  h1 { color: var(--teal); margin-top: 0; }
-  h2, h3 { color: var(--teal); margin-top: 28px; }
-  p, ul, ol, table { font-size: 18px; line-height: 1.65; }
-  ul, ol { padding-left: 22px; }
-  .seccion + .seccion { margin-top: 20px; }
-
-  /* Galería */
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-    margin: 12px 0 24px;
-  }
-  .galeria .placeholder {
-    border: 2px dashed #aacccc;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    color: #5a7e7e;
-    font-size: 16px;
-    background: #f6fcfc;
-  }
-  .galeria img {
-    width: 100%; border-radius: 10px; display: block;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-
-  /* Tablas */
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
-  th { background: var(--teal); color: #fff; }
-
-  /* Cajas de info */
-  .callout {
-    background: #f0fbfb;
-    border-left: 6px solid var(--teal);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin: 14px 0;
-  }
-  .advertencia {
-    margin-top: 24px;
-    padding: 18px;
-    background-color: #ffe0e0;
-    color: #8b0000;
-    border-left: 6px solid #ff5e5e;
-    border-radius: 10px;
-    font-size: 18px;
-  }
-
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .layout { grid-template-columns: 1fr; }
-    .indice-wrap { position: static; height: auto; }
-  }
-</style>
+<link rel="stylesheet" href="css/hipertiroidismo.css" />
 </head>
 <body>
 
@@ -260,8 +126,8 @@
       </ul>
     </section>
 
-    <div id="lightbox" style="display:none; position:fixed; z-index:2000; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
-      <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.5); cursor:pointer;">
+    <div id="lightbox">
+      <img id="lightbox-img" src="">
     </div>
 
     <section id="nota" class="seccion">
