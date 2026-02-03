@@ -1,0 +1,484 @@
+:root {
+  --teal: #008080;
+  --teal-dark: #004d4d;
+  --bg: #e0f7f7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.home {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fdfefd;
+  margin: 0;
+  padding: 0;
+  color: #004d4d;
+}
+
+body.home .fondo-arriba {
+  background-image: url('img/Cuidate+ fondo4.0.png');
+  background-size: cover;
+  background-position: center;
+  height: 850px;
+  width: 1500px;
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+body.home .btn-primeros-auxilios {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background-color: #e63946;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+body.home .btn-primeros-auxilios:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+body.home .navbar {
+  font-size: 1em;
+  background-color: #07191800;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0);
+}
+
+body.home .navbar .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+body.home .navbar .left img {
+  width: 200px;
+  cursor: pointer;
+}
+
+body.home .navbar .left span {
+  font-weight: bold;
+  color: white;
+  font-size: 1.7em;
+  user-select: none;
+}
+
+body.home .search-container {
+  position: absolute;
+  top: 530px;
+  left: 31%;
+  transform: translateX(-50%);
+  width: 600px;
+  background: #ddeeec;
+  border-radius: 25px;
+  border: 2px solid #004d4d;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
+  z-index: 10;
+}
+
+body.home .search-container label {
+  color: #004d4d;
+  margin-right: 15px;
+  user-select: none;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+body.home .search-container input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 19px;
+  width: 100%;
+  font-weight: bold;
+  color: #004d4d;
+  text-align: left;
+  padding: 6px 0;
+}
+
+body.home .search-container input::placeholder {
+  color: #007d7d;
+}
+
+body.home #suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 200;
+  display: none;
+  border-radius: 15px 15px 15px 15px;
+}
+
+body.home main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  color: #004d4d;
+  background-color: #fdfefd;
+}
+
+body.home .trending {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #004d4d;
+  text-align: center;
+}
+
+body.home .descripciones {
+  font-size: 1em;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+body.home .producto-catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding-bottom: 400px;
+}
+
+body.home .producto {
+  background-color: rgba(206, 236, 234, 0.817);
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 400px;
+  padding: 20px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #004d4d;
+}
+
+body.home .producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+body.home .producto img {
+  max-width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+body.home .nombre {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 10px 0 8px 0;
+  flex-grow: 1;
+}
+
+body.home .vistazo {
+  background-color: white;
+  border: 2px solid #a0e7e5;
+  border-radius: 15px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  font-weight: bold;
+  color: #004d4d;
+}
+
+body.home .vistazo:hover {
+  background-color: #40c9c6;
+  border-color: #40c9c6;
+  color: white;
+}
+
+body.detalle {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('img/cuidate+\ fondos\ enfermedades.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+
+body.detalle .barra-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: rgba(0, 77, 77, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+body.detalle .barra-superior img {
+  width: 200px;
+  padding-top: 50px;
+}
+
+body.detalle .volver-btn {
+  background-color: #fff;
+  color: var(--teal-dark);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+body.detalle .volver-btn:hover {
+  background-color: var(--teal-dark);
+  color: #fff;
+}
+
+body.detalle .layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
+
+body.detalle .indice-wrap {
+  position: sticky;
+  top: 86px;
+  align-self: start;
+  height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+body.detalle .indice {
+  background: var(--bg);
+  border: 1px solid #cfe9e9;
+  border-radius: 12px;
+  padding: 16px 14px;
+}
+
+body.detalle .indice h3 {
+  margin: 0 0 10px 0;
+  color: var(--teal);
+  font-size: 18px;
+}
+
+body.detalle .indice a {
+  display: block;
+  color: var(--teal-dark);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+body.detalle .indice a:hover {
+  background: #d3f0f0;
+  text-decoration: underline;
+}
+
+body.detalle .contenido {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+}
+
+body.detalle h1 {
+  color: var(--teal);
+  margin-top: 0;
+}
+
+body.detalle h2,
+body.detalle h3 {
+  color: var(--teal);
+  margin-top: 28px;
+}
+
+body.detalle p,
+body.detalle ul,
+body.detalle ol,
+body.detalle table {
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+body.detalle ul,
+body.detalle ol {
+  padding-left: 22px;
+}
+
+body.detalle .seccion + .seccion {
+  margin-top: 20px;
+}
+
+body.detalle .galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 12px 0 24px;
+}
+
+body.detalle .galeria .placeholder {
+  border: 2px dashed #aacccc;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  color: #5a7e7e;
+  font-size: 16px;
+  background: #f6fcfc;
+}
+
+body.detalle .galeria img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.detalle table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+body.detalle th,
+body.detalle td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+body.detalle th {
+  background: var(--teal);
+  color: #fff;
+}
+
+body.detalle .callout {
+  background: #f0fbfb;
+  border-left: 6px solid var(--teal);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 14px 0;
+}
+
+body.detalle .advertencia {
+  margin-top: 24px;
+  padding: 18px;
+  background-color: #ffe0e0;
+  color: #8b0000;
+  border-left: 6px solid #ff5e5e;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  body.detalle .layout {
+    grid-template-columns: 1fr;
+  }
+
+  body.detalle .indice-wrap {
+    position: static;
+    height: auto;
+  }
+}
+
+body.primeros-auxilios {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('img/cuidate+\ guias\ fondo.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.primeros-auxilios nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+body.primeros-auxilios nav img {
+  width: 200px;
+}
+
+body.primeros-auxilios nav a {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  text-decoration: none;
+  background: #fa1629c0;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+body.primeros-auxilios nav a:hover {
+  background: #c51123ca;
+}
+
+body.primeros-auxilios .botones {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 20px;
+  padding-left: 120px;
+  justify-content: left;
+  margin-top: 370px;
+}
+
+body.primeros-auxilios .botones a {
+  background: rgba(226, 25, 39, 0.9);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 120px;
+  transition: background 0.3s;
+}
+
+body.primeros-auxilios .botones a:hover {
+  background: rgb(150, 0, 0);
+}
